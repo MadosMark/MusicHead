@@ -6,18 +6,20 @@ import styles from './styles'
 
 
 
-const HomeScreen = () => {
+
+const HomeScreen = (props) => {
+    
     return (
         <View style={styles.container}>
+                <Title />
             <View style={styles.imageContainer}>
                 <Image source={require('../../assets/gemini.png')}
                 style={styles.image}
                 resizeMode="contain"
                 />
             </View>
-                 <Title />
-            <TouchableOpacity>
-                <Text style={styles.text}>Enter Here</Text>
+            <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Quiz")}>
+                <Text style={styles.buttonText}>Enter Here</Text>
             </TouchableOpacity>
         </View>
     )

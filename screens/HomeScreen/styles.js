@@ -8,8 +8,23 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
-    text: {
-        color: 'red',
+    button: {
+        width: '50%',
+        backgroundColor: '#eee',
+        padding: 20,
+        shadowOffset: {width: 0, height: 1},
+        shadowOpacity: 1,
+        shadowColor: "grey",
+        shadowRadius: 1,
+        borderRadius: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    buttonText: {
+       
+       fontSize: 15,
+
     },
     image: {
         height: 300,
@@ -18,6 +33,7 @@ export default StyleSheet.create({
     imageContainer: {
      justifyContent: 'center',
      alignItems: 'center',
-    }
+    },
+    
 });
 

@@ -1,12 +1,21 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 const Title = () => {
     return (
-        <View>
-            <Text>Music Head</Text>
+        <View style={styles.title}>
+            <Text style={styles.text}>Music Head</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+title: {
+    margin: 15,
+},
+text: {
+    fontSize: 25,
+}
+})
 
 export default Title;
