@@ -1,32 +1,64 @@
-import React, { useEffect } from 'react'
-import { View, Text, TouchableOpacity, Alert } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
-import { useState } from 'react'
+import data from '../../data/QuizData';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 
 
 const Quiz = (props) => {
 
-    const [questions, setQuestions] = useState();
-    const [ques, setQues] = useState(0);
-    const getQuiz = async()=> {
-      const url = 'https://opentdb.com/api.php?amount=10&type=multiple';
-      const res = await fetch(url);
-      const data = await res.json();
-      setQuestions(data.results);
-      
-      
-      
-    };
-    useEffect(()=>{
-        getQuiz()
-    }, []);
+    const allQuestions = data;
+    const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0)
+
+
+    const renderQuestion = () => {
+        return (
+        <View>
+            {/* Question Counter */}
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'flex-end'
+            }}>
+                <Text>{currentQuestionIndex+1}</Text>
+                <Text>/{allQuestions.length}</Text>
+            </View>
+        
+
+        {/* Question */}
+        <Text style={{
+            fontSize: 25
+        }}>{allQuestions[currentQuestionIndex]?.question}</Text>
+        </View>
+
+        )
+    }
+
+    const renderOptions = () => {
+        return (
+            <View>
+                {
+                    allQuestions[currentQuestionIndex]?.options.map(option => (
+                <TouchableOpacity>
+                <Text>{option}</Text>
+                </TouchableOpacity>
+                    )
+                    )
+                }
+            </View>
+        )
+    }
 
     return (
+        <SafeAreaView style={{
+            flex: 1
+        }}>
         <View style={styles.quizContainer}>
-         
-            <View style={styles.question}>
-                <Text style={styles.questionText}>This is a really cool question?</Text>
+            {renderQuestion()}
+            {renderOptions()}
+            {/* <View style={styles.question}>
+                <Text style={styles.questionText}>Why?</Text>
             </View>
             <View style={styles.options}>
                 <TouchableOpacity style={styles.optionButton}>
@@ -49,8 +81,9 @@ const Quiz = (props) => {
                 <TouchableOpacity style={styles.buttons}>
                     <Text>Next</Text>
                 </TouchableOpacity>
+            </View> */}
             </View>
-            </View>
+            </SafeAreaView>
             
       
     )
