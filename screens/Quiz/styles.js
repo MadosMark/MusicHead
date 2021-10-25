@@ -1,22 +1,30 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
-
     
     quizContainer: {
-    padding: 70,
+    padding: 30,
+    backgroundColor: '#fff',
     height: '100%',
-    backgroundColor: '#fff'
+    
+    
     },
+
     question: {
-        marginTop: 60,
-        marginVertical: 16,
-        alignItems: 'center',
+    marginTop: 60,
+    marginVertical: 16,
+    alignItems: 'center',
         
     },
     questionText: {
-        fontSize: 25,
-        textAlign: 'center',
+    fontSize: 30,
+    textAlign: 'center',
+    padding: 10,
+    color: '#fff',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.8,
+    shadowColor: "black",
+    shadowRadius: 1,
 
     },
     options: {
@@ -29,6 +37,12 @@ export default StyleSheet.create({
     },
     option: {
         fontSize: 16,
+        color: '#fff',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.8,
+    shadowColor: "black",
+    shadowRadius: 1,
+        
     },
     buttonsContainer: {
         marginBottom: 12,
@@ -43,22 +57,67 @@ export default StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         width: '100%',
-        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 1,
-        shadowColor: "grey",
-        shadowRadius: 1,
+        
     
 
     },
     buttons: {
-    backgroundColor: '#eee',
-    padding: 20,
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 1,
-    shadowColor: "grey",
+    backgroundColor: '#FFF',
+    padding: 10,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowColor: "black",
     shadowRadius: 1,
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 0,
+    },
+
+    giveUpButton: {
+    backgroundColor: '#FFF',
+    padding: 10,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.4,
+    shadowColor: "black",
+    shadowRadius: 1,
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 100,
+    width: '50%',
+    },
+
+    giveUpText: {
+    color: '#fff',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.9,
+    shadowColor: "black",
+    shadowRadius: 0.8,
+    },
+    
+    nextButton: {
+    backgroundColor: '#FFF',
+    padding: 10,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowColor: "black",
+    shadowRadius: 1,
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -20,
+    },
+
+    nextButtonText: {
+    color: '#FFF',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.7,
+    shadowColor: "black",
+    shadowRadius: 0.8,
+    fontSize: 25,
+    textAlign: 'center',
+
     }
+
 });

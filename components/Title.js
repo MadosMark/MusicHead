@@ -14,7 +14,12 @@ title: {
     margin: 15,
 },
 text: {
-    fontSize: 25,
+    fontSize: 45,
+    color: '#fff',
+    shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.3,
+        shadowColor: "black",
+        shadowRadius: 1,
 }
 })
 

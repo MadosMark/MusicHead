@@ -1,27 +1,28 @@
 export default data = [
     {
-        question: "What’s the biggest planet in our solar system?",
-        options: ["Jupiter","Saturn","Neptune","Mercury"],
-        correct_option: "Jupiter"
+        question: "When did The Weeknd release his album After Hours?",
+        image: require('../assets/gemini.png'),
+        options: ["20th March 2020","20th September 2020"],
+        correct_option: "20th March 2020"
     },
     {
-        question: "What attraction in India is one of the famus in the world?",
-        options: ["Chand Minar","Taj Mahal","Stadium"],
-        correct_option: "Taj Mahal"
+        question: "Finish this lyric from Gucci Mane - 'Is this a chain on my neck, or the watch in my wrist...'",
+        options: ["Maybe the gold I wear, or is my face lit","Maybe the ice in my ear, or my bracelet"],
+        correct_option: "Maybe the ice in my ear, or my bracelet"
     },
-    // {
-    //     question: "What land animal can open its mouth the widest?",
-    //     options: ["Alligator","Crocodile","Baboon","Hippo"],
-    //     correct_option: "Hippo"
-    // },
-    // {
-    //     question: "What is the largest animal on Earth?",
-    //     options: ["The African elephant","The blue whale","The sperm whale","The giant squid"],
-    //     correct_option: "The blue whale"
-    // },
-    // {
-    //     question: "What is the only flying mammal?",
-    //     options: ["The bat","The flying squirrel","The bald eagle","The colugo"],
-    //     correct_option: "The bat"
-    // }
+    {
+        question: "What is the name of Kendrick Lamar's new company?",
+        options: ["phLand","pgLang"],
+        correct_option: "pgLang"
+    },
+    {
+        question: "What is Dr.Dre's networth?",
+        options: ["$800 Million Dollars","$500 Million Dollars"],
+        correct_option: "$800 Million Dollars"
+    },
+    {
+        question: "What astrological sign is the rapper G-Eazy?",
+        options: ["Libra","Gemini"],
+        correct_option: "Gemini"
+    }
 ]

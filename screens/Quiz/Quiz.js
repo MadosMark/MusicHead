@@ -2,132 +2,144 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Modal, Animated } from 'react-native'
 import styles from './styles'
 import data from '../../data/QuizData';
-import { SafeAreaView, useSafeAreaFrame } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 
 
 const Quiz = (props) => {
 
-    const allQuestions = data;
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-    const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
+    const Questions = data;
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [optionSelected, setOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
-    const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
-    const [score, setScore] = useState(0)
-    const [showNextButton, setShowNextButton] = useState(false)
-    const [showScoreModal, setShowScoreModal] = useState(false)
+    const [ifOptionDisabled, setifOptionDisabled] = useState(false);
+    const [result, setResult] = useState(0)
+    const [displayNextButton, setDisplayNextButton] = useState(false)
+    const [displayShowModal, setdisplayShowModal] = useState(false)
+    
 
-
-
-    const validateAnswer = (selectedOption) => {
-        let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
-        setCurrentOptionSelected(selectedOption);
+    const checkAnswer = (selectedOption) => {
+        let correct_option = Questions[currentQuestion]['correct_option'];
+        setOptionSelected(selectedOption);
         setCorrectOption(correct_option);
-        setIsOptionsDisabled(true);
+        setifOptionDisabled(true);
         if(selectedOption==correct_option){
-            // Set Score
-            setScore(score+1)
+            setResult(result+1)
         }
-        // Show Next Button
-        setShowNextButton(true)
+        setDisplayNextButton(true)
     }
+    
+    
+    
+ 
 
-    const handleNext = () => {
-        if(currentQuestionIndex== allQuestions.length-1){
-            // Last Question
-            // Show Score Modal
-            setShowScoreModal(true)
+    const nextQuestion = () => {
+        if(currentQuestion== Questions.length-1){
+            setdisplayShowModal(true)
         }else{
-            setCurrentQuestionIndex(currentQuestionIndex+1);
-            setCurrentOptionSelected(null);
+            setCurrentQuestion(currentQuestion+1);
+            setOptionSelected(null);
             setCorrectOption(null);
-            setIsOptionsDisabled(false);
-            setShowNextButton(false);
+            setifOptionDisabled(false);
+            setDisplayNextButton(false);
         }
+        Animated.timing(progress, {
+            toValue: currentQuestion+1,
+            duration: 1000,
+            useNativeDriver: false
+        }).start();
     }
- const restartQuiz= () => {
-     setShowScoreModal(false);
+    
+    const restartQuiz= () => {
+     setdisplayShowModal(false);
 
-     setCurrentQuestionIndex(0);
-     setScore(0);
-     setCurrentOptionSelected(null);
+     setCurrentQuestion(0);
+     setResult(0);
+     setOptionSelected(null);
      setCorrectOption(null);
-     setIsOptionsDisabled(false);
-     setShowNextButton(false);
+     setifOptionDisabled(false);
+     setDisplayNextButton(false);
+     Animated.timing(progress, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: false
+    }).start();
 
 
  }
 
-    const renderQuestion = () => {
+    const displayQuestion = () => {
         return (
         <View>
-            {/* Question Counter */}
             <View style={{
                 flexDirection: 'row',
-                alignItems: 'flex-end'
+                alignItems: 'flex-end',
+                padding: 10,
             }}>
-                <Text>{currentQuestionIndex+1}</Text>
-                <Text>/{allQuestions.length}</Text>
+                <Text>{currentQuestion+1}</Text>
+                <Text>/{Questions.length}</Text>
             </View>
         
 
-        {/* Question */}
-        <Text style={{
-            fontSize: 25
-        }}>{allQuestions[currentQuestionIndex]?.question}</Text>
+        <Text style={styles.questionText}>{Questions[currentQuestion]?.question}</Text>
         </View>
 
         )
     }
 
-    const renderOptions = () => {
+    const displayOption = () => {
         return (
-            <View>
+            <View style={{
+                paddingVertical: 100,
+            }}>
                 {
-                allQuestions[currentQuestionIndex]?.options.map(option => (
+                Questions[currentQuestion]?.options.map(option => (
                 <TouchableOpacity
-                onPress={()=> validateAnswer(option)}
-                disabled={isOptionsDisabled}
+                onPress={()=> checkAnswer(option)}
+                disabled={ifOptionDisabled}
                 key={option}
                 style={{
-                    
-                    borderWidth: 3,
-                    backgroundColor: '#098',
-                    height: 60, borderRadius: 20,
+                    backgroundColor: '#eee',
+                    height: 50, borderRadius: 10,
                     flexDirection: 'row',
                     alignItems: 'center', justifyContent: 'space-between',
                     paddingHorizontal: 20,
                     marginVertical: 10,
+                    shadowOffset: {width: 0, height: 2},
+                    shadowOpacity: 1,
+                    shadowColor: "grey",
+                    shadowRadius: 1,
+                    width: '100%',
+                    
                 }}
                 >
-                 <Text style= {{ color: '#fff'}}>{option}</Text>
-                
+                 <Text style= {{ color: '#000', textAlign: 'center',}}>{option}</Text>
                    {
                     option==correctOption ? (
                         <View style={{
-                            width: 30, height: 30, borderRadius: 30/2,
-                            backgroundColor: '#fff',
+                            width: 30, height: 30, 
                             justifyContent: 'center', alignItems: 'center'
                         }}>
                             <MaterialCommunityIcons name="check" style={{
-                                color: '#000',
+                                color: '#8bc901',
                                 fontSize: 20
                             }} />
                         </View>
-                    ): option == currentOptionSelected ? (
+                    ): option == optionSelected ? (
                         <View style={{
-                            width: 30, height: 30, borderRadius: 30/2,
-                            backgroundColor: 'red',
+                            width: 30, height: 30,
                             justifyContent: 'center', alignItems: 'center'
                         }}>
                             <MaterialCommunityIcons name="close" style={{
-                                color: '#fff',
+                                color: 'red',
                                 fontSize: 20
                             }} />
                         </View>
                     ) : null
-
+    
                     }
                 </TouchableOpacity>
                 ))
@@ -135,18 +147,17 @@ const Quiz = (props) => {
             </View>
         )
     }
+    
+    
+    
 
-    const renderNextButton = () => {
-      if(showNextButton){
+    const nextButton = () => {
+      if(displayNextButton){
           return(
               <TouchableOpacity
-              onPress={handleNext} 
-              style={{
-                  marginTop: 20, width: '100%', padding: 20, borderRadius: 15,
-              }}>
-                  <Text style={{
-                      color: '#fff', backgroundColor: '#955',textAlign: 'center',
-                  }}>Next</Text>
+              onPress={nextQuestion}
+              style={styles.nextButton} >
+                <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
           )
 
@@ -155,23 +166,72 @@ const Quiz = (props) => {
       }
     }
 
-    return (
-        <SafeAreaView style={{
-            flex: 1
+    const giveUpButton = () => {
+        return (
+        <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            
         }}>
+        <TouchableOpacity
+        onPress={() => props.navigation.navigate("HomeScreen")}
+        style={styles.giveUpButton}>
+            <Text style={
+                styles.giveUpText
+            }> Give Up </Text>
+        </TouchableOpacity>
+        </View>
+        )
+    }
+
+    const [progress, setProgress] = useState(new Animated.Value(0));
+    const progessAnimation = progress.interpolate({
+        inputRange: [0, Questions.length],
+        outputRange: ['0%','100%']
+    })
+    const displayProgressBar = () => {
+        return (
+            <View style={{
+                width: '100%',
+                height: 5,
+                borderRadius: 25,
+                backgroundColor: '#00000020',
+                marginTop: 50,
+
+            }}>
+                <Animated.View style={[{
+                    height: 5,
+                    borderRadius: 25,
+                    backgroundColor: 'red',
+                },{
+                    width: progessAnimation
+                }]}>
+
+                </Animated.View>
+
+            </View>
+        )
+    }
+
+
+    return (
         <View style={styles.quizContainer}>
-            {renderQuestion()}
-            {renderOptions()}
-            {renderNextButton()}
+       
+            {displayProgressBar()}
+            {displayQuestion()}
+            {displayOption()}
+           
+            {nextButton()}
+            
             <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
-            visible={showScoreModal}>
+            visible={displayShowModal}>
                 <View style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#744',
+                    backgroundColor: '#FFF',
                 }}>
                     <View style={{
                         backgroundColor: '#fff',
@@ -180,55 +240,74 @@ const Quiz = (props) => {
                         padding: 20,
                         alignItems: 'center',
                     }}>
-                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{ score> (allQuestions.length/2) ? 'Congratulations!' : 'Oops!' }</Text>
+                        <Text style={{
+                            textAlign: 'center',
+                        fontSize: 30, 
+                        fontWeight: 'bold',
+                        color: '#FFF',
+                        shadowOffset: {width: 0, height: 2},
+                        shadowOpacity: 0.7,
+                        shadowColor: "black",
+                        shadowRadius: 0.8,
+                        
+                        }}>{ result> (Questions.length/2) ? 'You are definitely a Music Head!' : 'You should study more my dude!' }</Text>
                         <View style={{
                             flexDirection: 'row',
                             justifyContent: 'flex-start',
                             alignItems: 'center',
                             marginVertical: 20,
+                            padding: 30,
                         }}>
-                            <Text>{score} </Text>
                             <Text style={{
-                                    fontSize: 12, color: '#000'
-                                }}>/ { allQuestions.length }</Text>
+                                fontSize: 25,
+                                color: '#FFF',
+                                shadowOffset: {width: 0, height: 2},
+                                shadowOpacity: 0.8,
+                                shadowColor: "black",
+                                shadowRadius: 0.8,
+                            }}>{result} </Text>
+                            <Text style={{
+                                    fontSize: 25,
+                                    color: '#FFF',
+                                    shadowOffset: {width: 0, height: 2},
+                                    shadowOpacity: 0.8,
+                                    shadowColor: "black",
+                                    shadowRadius: 0.8,
+                                }}>/ { Questions.length }</Text>
                         </View>
                         <TouchableOpacity
-                        onPress={restartQuiz}>
-                            <Text>Retry Quiz</Text>
+                        onPress={restartQuiz}
+                        style= {{
+                            backgroundColor: '#FFF',
+                            padding: 10,
+                            shadowOffset: {width: 0, height: 2},
+                            shadowOpacity: 0.4,
+                            shadowColor: "black",
+                            shadowRadius: 1,
+                            borderRadius: 60,
+                            width: '50%',
+                            marginTop: 35,
+                        }}>
+                            <Text style={{
+                                color: '#fff',
+                                fontSize: 20,
+                                shadowOffset: {width: 0, height: 1},
+                                 shadowOpacity: 0.8,
+                                 shadowColor: "black",
+                                 shadowRadius: 1,
+                                 textAlign: 'center',
+                            }}>Retry Quiz</Text>
                         </TouchableOpacity>
+                        {giveUpButton()}
                     </View>
 
                 </View>
 
             </Modal>
 
-            {/* <View style={styles.question}>
-                <Text style={styles.questionText}>Why?</Text>
+            
             </View>
-            <View style={styles.options}>
-                <TouchableOpacity style={styles.optionButton}>
-                <Text style={styles.option}>Cool option 1</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.optionButton}>
-                <Text style={styles.option}>Cool option 2</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.optionButton}>
-                <Text style={styles.option}>Cool option 3</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.optionButton}>
-                <Text style={styles.option}>Cool option 4</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.buttons}>
-                    <Text>Skip</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttons}>
-                    <Text>Next</Text>
-                </TouchableOpacity>
-            </View> */}
-            </View>
-            </SafeAreaView>
+            
             
       
     )

@@ -10,11 +10,11 @@ export default StyleSheet.create({
       },
     button: {
         width: '50%',
-        backgroundColor: '#eee',
+        backgroundColor: '#fff',
         padding: 20,
-        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 1,
-        shadowColor: "grey",
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowColor: "black",
         shadowRadius: 1,
         borderRadius: 60,
         justifyContent: 'center',
@@ -22,13 +22,19 @@ export default StyleSheet.create({
 
     },
     buttonText: {
-       
-       fontSize: 15,
+       color: '#fff',
+       fontSize: 20,
+       shadowOffset: {width: 0, height: 1},
+        shadowOpacity: 0.4,
+        shadowColor: "black",
+        shadowRadius: 1,
 
     },
     image: {
-        height: 300,
-        width: 300,
+        height: 150,
+        width: 150,
+        margin: 30,
+        opacity: 0.8,
     },
     imageContainer: {
      justifyContent: 'center',
