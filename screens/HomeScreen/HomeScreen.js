@@ -2,8 +2,7 @@ import React from 'react'
 import { Image, View, Text, TouchableOpacity } from 'react-native'
 import Title from '../../components/Title'
 import styles from './styles';
-import NeumorphisButton from '../../components/neuPhorButton';
-import NeumorphismButton from '../../components/neuPhorButton';
+import NeumorphismButton from '../../components/NeumoprhismButton';
 
 const HomeScreen = (props) => {
 
@@ -20,13 +19,9 @@ const HomeScreen = (props) => {
             </View>
             </NeumorphismButton>
             
-
-            <NeumorphisButton>
-               
-            <TouchableOpacity onPress={() => props.navigation.navigate("Quiz")}>
-                <Text >Enter Here</Text>
-            </TouchableOpacity>
-            </NeumorphisButton>
+            <NeumorphismButton onPress={() => props.navigation.navigate("Quiz")}>
+                <Text>Enter Here</Text>
+            </NeumorphismButton>
             
         </View>
     )

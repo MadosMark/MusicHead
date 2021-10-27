@@ -8,12 +8,15 @@ import {View, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 const NeumorphismButton = props => {
     const {size = 12} = props;
     const [isDown, setDown] = useState(false);
-    // const handlePressIn = useCallback(() => {
-    //   setDown(true);
-    // }, [setDown]);
-    // const handlePressOut = useCallback(() => {
-    //   setDown(false);
-    // }, [setDown]);
+    const handlePressIn = useCallback(() => {
+      setDown(true);
+    }, [setDown]);
+    const handlePressOut = useCallback(() => {
+      setDown(false);
+      if (props.onPress) {
+          props.onPress();
+      }
+    }, [setDown]);
     const gradColors = isDown ? ['#c8c8c8', '#eeeeee'] : ['#eeeeee', '#c8c8c8'];
     const buttonCommonStyle = {
       borderRadius: size,
@@ -33,9 +36,9 @@ const NeumorphismButton = props => {
     };
   
     return (
-    //   <TouchableWithoutFeedback
-    //     onPressIn={handlePressIn}
-    //     onPressOut={handlePressOut}>
+      <TouchableWithoutFeedback
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}>
         <View style={[styles.buttonOuter, buttonCommonStyle, buttonOuterStyle]}>
           <View style={[styles.buttonInner, buttonCommonStyle, buttonInnerStyle]}>
             <LinearGradient
@@ -48,7 +51,7 @@ const NeumorphismButton = props => {
             </LinearGradient>
           </View>
         </View>
-    //   </TouchableWithoutFeedback>
+       </TouchableWithoutFeedback>
     );
   };
   

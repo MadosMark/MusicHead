@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Modal, Animated } from 'react-native'
 import styles from './styles'
 import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import NeumorphismButton from '../../components/NeumoprhismButton';
 
 
 
@@ -161,13 +162,14 @@ const checkAnswer = (selectedOption) => {
     const nextButton = () => {
       if(displayNextButton){
           return(
-              
+              <NeumorphismButton>
               <TouchableOpacity
               onPress={nextQuestion}
-              style={styles.nextButton}
+            //   style={styles.nextButton}
               >
                 <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
+              </NeumorphismButton>
               
           )
 
@@ -228,10 +230,13 @@ const checkAnswer = (selectedOption) => {
         <View style={styles.quizContainer}>
        
             {displayProgressBar()}
+            <NeumorphismButton>
             {displayQuestion()}
+            </NeumorphismButton>
             {displayOption()}
            
             {nextButton()}
+            
             
             <Modal
             animationType="fade"
@@ -241,25 +246,27 @@ const checkAnswer = (selectedOption) => {
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#FFF',
+                    backgroundColor: '#dedede',
                 }}>
                     <View style={{
-                        backgroundColor: '#fff',
+                        backgroundColor: '#dedede',
                         width: '90%',
                         borderRadius: 20,
                         padding: 20,
                         alignItems: 'center',
-                    }}>
+                    }}> 
                         <Text style={{
                             textAlign: 'center',
-                        fontSize: 35, 
-                        fontWeight: 'bold',
-                        color: '#F0F3F4',
-                        shadowOffset: {width: 0, height: 2},
-                        shadowOpacity: 0.7,
-                        shadowColor: "black",
-                        shadowRadius: 0.8,
-                        
+                            fontSize: 35, 
+                            fontWeight: 'bold',
+                            color: '#F0F3F4',
+                            shadowOffset: {width: 0, height: 2},
+                            shadowOpacity: 0.7,
+                            shadowColor: "black",
+                            shadowRadius: 0.8,
+                            
+                            
+                            
                         }}>{ result> (Questions.length/2) ? 'You are definitely a Music Head!' : 'You should study more my dude!' }</Text>
                         <View style={{
                             flexDirection: 'row',
@@ -285,6 +292,7 @@ const checkAnswer = (selectedOption) => {
                                     shadowRadius: 0.8,
                                 }}>/ { Questions.length }</Text>
                         </View>
+                        
                         <TouchableOpacity
                         onPress={restartQuiz}
                         style= {{
@@ -302,13 +310,14 @@ const checkAnswer = (selectedOption) => {
                                 color: '#F0F3F4',
                                 fontSize: 20,
                                 shadowOffset: {width: 0, height: 1},
-                                 shadowOpacity: 0.8,
-                                 shadowColor: "black",
-                                 shadowRadius: 1,
-                                 textAlign: 'center',
+                                shadowOpacity: 0.8,
+                                shadowColor: "black",
+                                shadowRadius: 1,
+                                textAlign: 'center',
                             }}>Retry Quiz</Text>
                         </TouchableOpacity>
                         {giveUpButton()}
+                            
                     </View>
 
                 </View>

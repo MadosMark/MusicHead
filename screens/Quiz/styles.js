@@ -4,8 +4,8 @@ export default StyleSheet.create({
     
     quizContainer: {
     padding: 30,
-    backgroundColor: '#fff',
-    height: '100%',
+    backgroundColor: '#dedede',
+    flex: 1,
     
     
     
@@ -100,16 +100,16 @@ export default StyleSheet.create({
     },
 
     nextButton: {
-    backgroundColor: '#FFF',
-    padding: 10,
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowColor: "black",
-    shadowRadius: 1,
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: -20,
+    // backgroundColor: '#FFF',
+    // padding: 10,
+    // shadowOffset: {width: 0, height: 2},
+    // shadowOpacity: 0.2,
+    // shadowColor: "black",
+    // shadowRadius: 1,
+    // borderRadius: 60,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // marginTop: -20,
     
     },
 
