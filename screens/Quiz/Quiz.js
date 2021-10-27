@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Modal, Animated } from 'react-native'
 import styles from './styles'
 import data from '../../data/QuizData';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 
 
@@ -21,18 +22,19 @@ const Quiz = (props) => {
     const [displayShowModal, setdisplayShowModal] = useState(false)
     
 
-    const checkAnswer = (selectedOption) => {
-        let correct_option = Questions[currentQuestion]['correct_option'];
-        setOptionSelected(selectedOption);
-        setCorrectOption(correct_option);
-        setifOptionDisabled(true);
-        if(selectedOption==correct_option){
-            setResult(result+1)
-        }
-        setDisplayNextButton(true)
+    
+    
+    
+const checkAnswer = (selectedOption) => {
+    let correct_option = Questions[currentQuestion]['correct_option'];
+    setOptionSelected(selectedOption);
+    setCorrectOption(correct_option);
+    setifOptionDisabled(true);
+    if(selectedOption==correct_option){
+        setResult(result+1)
     }
-    
-    
+    setDisplayNextButton(true)
+}
     
  
 
@@ -94,25 +96,28 @@ const Quiz = (props) => {
         return (
             <View style={{
                 paddingVertical: 100,
+                
             }}>
                 {
                 Questions[currentQuestion]?.options.map(option => (
+                
                 <TouchableOpacity
                 onPress={()=> checkAnswer(option)}
                 disabled={ifOptionDisabled}
                 key={option}
                 style={{
-                    backgroundColor: '#eee',
+                    backgroundColor: '#FFF',
                     height: 50, borderRadius: 10,
                     flexDirection: 'row',
                     alignItems: 'center', justifyContent: 'space-between',
                     paddingHorizontal: 20,
                     marginVertical: 10,
                     shadowOffset: {width: 0, height: 2},
-                    shadowOpacity: 1,
+                    shadowOpacity: 0.5,
                     shadowColor: "grey",
-                    shadowRadius: 1,
+                    shadowRadius: 3,
                     width: '100%',
+                    
                     
                 }}
                 >
@@ -142,6 +147,8 @@ const Quiz = (props) => {
     
                     }
                 </TouchableOpacity>
+                
+                
                 ))
                 }
             </View>
@@ -154,11 +161,14 @@ const Quiz = (props) => {
     const nextButton = () => {
       if(displayNextButton){
           return(
+              
               <TouchableOpacity
               onPress={nextQuestion}
-              style={styles.nextButton} >
+              style={styles.nextButton}
+              >
                 <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
+              
           )
 
       } else {
@@ -242,9 +252,9 @@ const Quiz = (props) => {
                     }}>
                         <Text style={{
                             textAlign: 'center',
-                        fontSize: 30, 
+                        fontSize: 35, 
                         fontWeight: 'bold',
-                        color: '#FFF',
+                        color: '#F0F3F4',
                         shadowOffset: {width: 0, height: 2},
                         shadowOpacity: 0.7,
                         shadowColor: "black",
@@ -260,7 +270,7 @@ const Quiz = (props) => {
                         }}>
                             <Text style={{
                                 fontSize: 25,
-                                color: '#FFF',
+                                color: '#F0F3F4',
                                 shadowOffset: {width: 0, height: 2},
                                 shadowOpacity: 0.8,
                                 shadowColor: "black",
@@ -268,7 +278,7 @@ const Quiz = (props) => {
                             }}>{result} </Text>
                             <Text style={{
                                     fontSize: 25,
-                                    color: '#FFF',
+                                    color: '#F0F3F4',
                                     shadowOffset: {width: 0, height: 2},
                                     shadowOpacity: 0.8,
                                     shadowColor: "black",
@@ -289,7 +299,7 @@ const Quiz = (props) => {
                             marginTop: 35,
                         }}>
                             <Text style={{
-                                color: '#fff',
+                                color: '#F0F3F4',
                                 fontSize: 20,
                                 shadowOffset: {width: 0, height: 1},
                                  shadowOpacity: 0.8,

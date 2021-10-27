@@ -1,31 +1,34 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
+
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: '#dedede',
         alignItems: 'center',
         justifyContent: 'center',
       },
     button: {
-        width: '50%',
-        backgroundColor: '#fff',
-        padding: 20,
+        
+        justifyContent: 'center',
+        alignItems: 'center',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
         shadowColor: "black",
-        shadowRadius: 1,
-        borderRadius: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
+        shadowRadius: 2,
+        width: '35%',
+        height: '5%',
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        marginTop: 15,
 
     },
     buttonText: {
-       color: '#fff',
-       fontSize: 20,
+       color: '#F0F3F4',
+       fontSize: 18,
        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.7,
         shadowColor: "black",
         shadowRadius: 1,
 
@@ -33,7 +36,7 @@ export default StyleSheet.create({
     image: {
         height: 150,
         width: 150,
-        margin: 30,
+        margin: 35,
         opacity: 0.8,
     },
     imageContainer: {
@@ -41,5 +44,7 @@ export default StyleSheet.create({
      alignItems: 'center',
     },
     
+
 });
 
+export default styles;

@@ -15,9 +15,9 @@ title: {
 },
 text: {
     fontSize: 45,
-    color: '#fff',
+    color: '#F0F3F4',
     shadowOffset: {width: 0, height: 3},
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.6,
         shadowColor: "black",
         shadowRadius: 1,
 }

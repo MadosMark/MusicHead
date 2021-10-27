@@ -8,6 +8,7 @@ export default StyleSheet.create({
     height: '100%',
     
     
+    
     },
 
     question: {
@@ -20,7 +21,7 @@ export default StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     padding: 10,
-    color: '#fff',
+    color: '#F0F3F4',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowColor: "black",
@@ -34,6 +35,7 @@ export default StyleSheet.create({
         flex: 1,
         marginTop: 150,
         
+        
     },
     option: {
         fontSize: 16,
@@ -42,6 +44,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.8,
     shadowColor: "black",
     shadowRadius: 1,
+    
         
     },
     buttonsContainer: {
@@ -89,13 +92,13 @@ export default StyleSheet.create({
     },
 
     giveUpText: {
-    color: '#fff',
+    color: '#F0F3F4',
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.9,
     shadowColor: "black",
     shadowRadius: 0.8,
     },
-    
+
     nextButton: {
     backgroundColor: '#FFF',
     padding: 10,
@@ -107,10 +110,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -20,
+    
     },
 
     nextButtonText: {
-    color: '#FFF',
+    color: '#F0F3F4',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowColor: "black",
@@ -118,6 +122,7 @@ export default StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
 
-    }
+    },
+    
 
 });
