@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, Modal, Animated } from 'react-native'
 import styles from './styles'
 import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
-import NeumorphismButton from '../../components/NeumoprhismButton';
+import NeumorphismButton from '../../components/NeumorphismButton';
+import NeumorphismStyle from '../../components/NeumorphismStyle';
 
 
 
@@ -74,21 +75,44 @@ const checkAnswer = (selectedOption) => {
 
  }
 
-    const displayQuestion = () => {
+    const displayQuestionCounter = () => {
         return (
         <View>
             <View style={{
                 flexDirection: 'row',
-                alignItems: 'flex-end',
-                padding: 10,
+                marginBottom: 15,
+                
             }}>
-                <Text>{currentQuestion+1}</Text>
-                <Text>/{Questions.length}</Text>
+                <Text style={{
+                    shadowOffset: {width: 0, height: 2},
+                    shadowOpacity: 0.8,
+                    shadowColor: "black",
+                    shadowRadius: 1,
+                    color: '#fff',
+                    fontSize: 18,
+                    
+                }}>{currentQuestion+1}</Text>
+                <Text style={{
+                    shadowOffset: {width: 0, height: 2},
+                    shadowOpacity: 0.8,
+                    shadowColor: "black",
+                    shadowRadius: 1,
+                    color: '#fff',
+                    fontSize: 18,
+                }}> / {Questions.length}</Text>
             </View>
-        
+        </View>
 
+        )
+    }
+
+    const displayQuestion = () => {
+        return (
+        <NeumorphismStyle>
+        <View>
         <Text style={styles.questionText}>{Questions[currentQuestion]?.question}</Text>
         </View>
+        </NeumorphismStyle>
 
         )
     }
@@ -97,27 +121,27 @@ const checkAnswer = (selectedOption) => {
         return (
             <View style={{
                 paddingVertical: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
                 
-            }}>
+
+                }}>
                 {
-                Questions[currentQuestion]?.options.map(option => (
-                
-                <TouchableOpacity
+                    Questions[currentQuestion]?.options.map(option => (
+                        
+                        
+                <NeumorphismButton
                 onPress={()=> checkAnswer(option)}
                 disabled={ifOptionDisabled}
                 key={option}
                 style={{
-                    backgroundColor: '#FFF',
-                    height: 50, borderRadius: 10,
+                    
+                    height: 50, 
+                    borderRadius: 10,
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                     flexDirection: 'row',
-                    alignItems: 'center', justifyContent: 'space-between',
-                    paddingHorizontal: 20,
-                    marginVertical: 10,
-                    shadowOffset: {width: 0, height: 2},
-                    shadowOpacity: 0.5,
-                    shadowColor: "grey",
-                    shadowRadius: 3,
-                    width: '100%',
+                    width: 330,
                     
                     
                 }}
@@ -127,7 +151,8 @@ const checkAnswer = (selectedOption) => {
                     option==correctOption ? (
                         <View style={{
                             width: 30, height: 30, 
-                            justifyContent: 'center', alignItems: 'center'
+                            alignItems: 'center',
+                            flexDirection: 'row'
                         }}>
                             <MaterialCommunityIcons name="check" style={{
                                 color: '#8bc901',
@@ -137,7 +162,8 @@ const checkAnswer = (selectedOption) => {
                     ): option == optionSelected ? (
                         <View style={{
                             width: 30, height: 30,
-                            justifyContent: 'center', alignItems: 'center'
+                            alignItems: 'center',
+                            flexDirection: 'row'
                         }}>
                             <MaterialCommunityIcons name="close" style={{
                                 color: 'red',
@@ -147,7 +173,7 @@ const checkAnswer = (selectedOption) => {
                     ) : null
     
                     }
-                </TouchableOpacity>
+                </NeumorphismButton>
                 
                 
                 ))
@@ -162,14 +188,19 @@ const checkAnswer = (selectedOption) => {
     const nextButton = () => {
       if(displayNextButton){
           return(
-              <NeumorphismButton>
-              <TouchableOpacity
+              
+              <NeumorphismButton
               onPress={nextQuestion}
-            //   style={styles.nextButton}
-              >
+              style={{
+                  width: 150,
+                  alignItems: 'center',
+                  justifyContent: 'center', 
+              }}
+              
+            >
                 <Text style={styles.nextButtonText}>Next</Text>
-              </TouchableOpacity>
               </NeumorphismButton>
+              
               
           )
 
@@ -185,13 +216,13 @@ const checkAnswer = (selectedOption) => {
             alignItems: 'center',
             
         }}>
-        <TouchableOpacity
+        <NeumorphismButton
         onPress={() => props.navigation.navigate("HomeScreen")}
-        style={styles.giveUpButton}>
+        >
             <Text style={
                 styles.giveUpText
             }> Give Up </Text>
-        </TouchableOpacity>
+        </NeumorphismButton>
         </View>
         )
     }
@@ -204,11 +235,11 @@ const checkAnswer = (selectedOption) => {
     const displayProgressBar = () => {
         return (
             <View style={{
-                width: '100%',
+                width: '85%',
                 height: 5,
                 borderRadius: 25,
                 backgroundColor: '#00000020',
-                marginTop: 50,
+                marginBottom: 20,
 
             }}>
                 <Animated.View style={[{
@@ -230,10 +261,13 @@ const checkAnswer = (selectedOption) => {
         <View style={styles.quizContainer}>
        
             {displayProgressBar()}
-            <NeumorphismButton>
+            
+            {displayQuestionCounter()}
             {displayQuestion()}
-            </NeumorphismButton>
+            
+            
             {displayOption()}
+            
            
             {nextButton()}
             
@@ -242,12 +276,13 @@ const checkAnswer = (selectedOption) => {
             animationType="fade"
             transparent={true}
             visible={displayShowModal}>
+                
                 <View style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: '#dedede',
-                }}>
+                }}> 
                     <View style={{
                         backgroundColor: '#dedede',
                         width: '90%',
@@ -255,6 +290,9 @@ const checkAnswer = (selectedOption) => {
                         padding: 20,
                         alignItems: 'center',
                     }}> 
+                    <NeumorphismStyle>
+                    <View>
+
                         <Text style={{
                             textAlign: 'center',
                             fontSize: 35, 
@@ -264,10 +302,15 @@ const checkAnswer = (selectedOption) => {
                             shadowOpacity: 0.7,
                             shadowColor: "black",
                             shadowRadius: 0.8,
+                            paddingVertical: 45,
+                            }}> 
+                            { result> (Questions.length/2) ? 'You are definitely a Music Head!' : 'You should study more my dude!' }
+                            </Text>
+
+                            </View>
+                            </NeumorphismStyle>
                             
                             
-                            
-                        }}>{ result> (Questions.length/2) ? 'You are definitely a Music Head!' : 'You should study more my dude!' }</Text>
                         <View style={{
                             flexDirection: 'row',
                             justifyContent: 'flex-start',
@@ -293,18 +336,13 @@ const checkAnswer = (selectedOption) => {
                                 }}>/ { Questions.length }</Text>
                         </View>
                         
-                        <TouchableOpacity
+                        <View>
+                        <NeumorphismButton
                         onPress={restartQuiz}
                         style= {{
-                            backgroundColor: '#FFF',
-                            padding: 10,
-                            shadowOffset: {width: 0, height: 2},
-                            shadowOpacity: 0.4,
-                            shadowColor: "black",
-                            shadowRadius: 1,
-                            borderRadius: 60,
-                            width: '50%',
-                            marginTop: 35,
+                            
+                            
+                            
                         }}>
                             <Text style={{
                                 color: '#F0F3F4',
@@ -315,12 +353,14 @@ const checkAnswer = (selectedOption) => {
                                 shadowRadius: 1,
                                 textAlign: 'center',
                             }}>Retry Quiz</Text>
-                        </TouchableOpacity>
+                        </NeumorphismButton>
                         {giveUpButton()}
+                        </View>
                             
                     </View>
 
                 </View>
+               
 
             </Modal>
 

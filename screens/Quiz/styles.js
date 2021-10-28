@@ -3,9 +3,12 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
     
     quizContainer: {
-    padding: 30,
+    padding: 0,
     backgroundColor: '#dedede',
-    flex: 1,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
     
     
     
@@ -56,7 +59,7 @@ export default StyleSheet.create({
     optionButton: {
         paddingVertical: 12,
         marginVertical: 8,
-        backgroundColor: '#eee',
+        // backgroundColor: '#eee',
         borderRadius: 10,
         padding: 10,
         width: '100%',
@@ -65,7 +68,7 @@ export default StyleSheet.create({
 
     },
     buttons: {
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FFF',
     padding: 10,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
@@ -100,27 +103,27 @@ export default StyleSheet.create({
     },
 
     nextButton: {
-    // backgroundColor: '#FFF',
-    // padding: 10,
-    // shadowOffset: {width: 0, height: 2},
-    // shadowOpacity: 0.2,
-    // shadowColor: "black",
-    // shadowRadius: 1,
-    // borderRadius: 60,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // marginTop: -20,
+    backgroundColor: '#FFF',
+    padding: 10,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowColor: "black",
+    shadowRadius: 1,
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -20,
     
     },
 
     nextButtonText: {
-    color: '#F0F3F4',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.7,
-    shadowColor: "black",
-    shadowRadius: 0.8,
-    fontSize: 25,
-    textAlign: 'center',
+        color: '#F0F3F4',
+        shadowOffset: {width: 0, height: 1},
+        shadowOpacity: 0.9,
+        shadowColor: "black",
+        shadowRadius: 0.8,
+        fontSize: 20,
+        textAlign: 'center',
 
     },
     
