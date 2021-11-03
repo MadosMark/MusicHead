@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, Modal, Animated } from 'react-native'
+import { View, Text, Image, Modal, Animated } from 'react-native'
 import styles from './styles'
 import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,6 +23,7 @@ const Quiz = (props) => {
     const [displayNextButton, setDisplayNextButton] = useState(false)
     const [displayShowModal, setdisplayShowModal] = useState(false)
     
+    
 
     
     
@@ -36,6 +37,7 @@ const checkAnswer = (selectedOption) => {
         setResult(result+1)
     }
     setDisplayNextButton(true)
+    
 }
     
  
@@ -43,12 +45,15 @@ const checkAnswer = (selectedOption) => {
     const nextQuestion = () => {
         if(currentQuestion== Questions.length-1){
             setdisplayShowModal(true)
+          
         }else{
             setCurrentQuestion(currentQuestion+1);
             setOptionSelected(null);
             setCorrectOption(null);
             setifOptionDisabled(false);
             setDisplayNextButton(false);
+            
+            
         }
         Animated.timing(progress, {
             toValue: currentQuestion+1,
@@ -109,7 +114,10 @@ const checkAnswer = (selectedOption) => {
     const displayQuestion = () => {
         return (
         <NeumorphismStyle>
-        <View>
+        <View style={{
+            width: '100%',
+            
+        }}>
         <Text style={styles.questionText}>{Questions[currentQuestion]?.question}</Text>
         </View>
         </NeumorphismStyle>
@@ -117,10 +125,44 @@ const checkAnswer = (selectedOption) => {
         )
     }
 
+    const DisplayImage = () => {
+        if(Questions[currentQuestion]?.pic){
+        return (
+            <View style={{
+                width: 200,
+                height: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 20,
+                borderRadius: 12,
+                shadowOffset: {width: 12, height: 12},
+                shadowColor: '#bababa',
+                shadowOpacity: 1.0,
+                shadowRadius: 18,
+            }}> 
+            
+            <Image 
+            source={Questions[currentQuestion]?.pic}
+            style={{
+                width: 110, 
+                height: 110,
+                borderRadius: 20,
+                resizeMode: 'cover',
+                backgroundColor: '#000'
+                }}/> 
+                
+            </View>
+        ) 
+    } else {
+        return null;
+        }
+    }
+    
+
     const displayOption = () => {
         return (
             <View style={{
-                paddingVertical: 100,
+                paddingVertical: 20,
                 justifyContent: 'center',
                 alignItems: 'center',
                 
@@ -195,6 +237,7 @@ const checkAnswer = (selectedOption) => {
                   width: 150,
                   alignItems: 'center',
                   justifyContent: 'center', 
+                  
               }}
               
             >
@@ -264,11 +307,8 @@ const checkAnswer = (selectedOption) => {
             
             {displayQuestionCounter()}
             {displayQuestion()}
-            
-            
+            {DisplayImage()}
             {displayOption()}
-            
-           
             {nextButton()}
             
             

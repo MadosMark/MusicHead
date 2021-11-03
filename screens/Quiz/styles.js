@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
     
     quizContainer: {
-    padding: 0,
+    padding: 5,
     backgroundColor: '#dedede',
     height: '100%',
     justifyContent: 'center',
@@ -18,6 +18,7 @@ export default StyleSheet.create({
     marginTop: 60,
     marginVertical: 16,
     alignItems: 'center',
+    
         
     },
     questionText: {

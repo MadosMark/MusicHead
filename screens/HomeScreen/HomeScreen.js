@@ -1,9 +1,13 @@
 import React from 'react'
-import { Image, View, Text, TouchableOpacity } from 'react-native'
+import { Image, View, Text } from 'react-native'
 import Title from '../../components/Title'
 import styles from './styles';
+import Vinyl from '../../components/Vinyl';
 import NeumorphismButton from '../../components/NeumorphismButton';
 import NeumorphismStyle from '../../components/NeumorphismStyle';
+
+
+
 
 
 const HomeScreen = (props) => {
@@ -14,6 +18,7 @@ const HomeScreen = (props) => {
             <NeumorphismStyle>
             <View>
                 <Title />
+                <Vinyl />
             </View>
             </NeumorphismStyle>
             <View style={styles.imageContainer}>
