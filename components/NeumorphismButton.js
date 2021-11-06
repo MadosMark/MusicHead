@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {useCallback, useState} from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import {View, TouchableWithoutFeedback, StyleSheet} from 'react-native';
+import {View, TouchableWithoutFeedback, StyleSheet, ViewPropTypes} from 'react-native';
 
 
 const NeumorphismButton = props => {
@@ -37,6 +37,7 @@ const NeumorphismButton = props => {
   
     return (
       <TouchableWithoutFeedback
+        disabled={props.disabled}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}>
         <View style={[styles.buttonOuter, buttonCommonStyle, buttonOuterStyle]}>
@@ -57,7 +58,7 @@ const NeumorphismButton = props => {
   
   NeumorphismButton.propTypes = {
     children: PropTypes.node,
-    style: PropTypes.object,
+    style: ViewPropTypes.style,
     size: PropTypes.number,
   };
   

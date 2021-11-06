@@ -18,7 +18,6 @@ const HomeScreen = (props) => {
             <NeumorphismStyle>
             <View>
                 <Title />
-                <Vinyl />
             </View>
             </NeumorphismStyle>
             <View style={styles.imageContainer}>

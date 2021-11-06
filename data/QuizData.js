@@ -5,13 +5,14 @@ export default data = [
     //     options: ["20th March 2020","20th September 2020"],
     //     correct_option: "20th March 2020"
     // },
-    // {
-    //     question: "Finish this lyric from Gucci Mane - 'Is this a chain on my neck, or the watch in my wrist...'",
-    //     options: ["Maybe the gold I wear, or is my face lit","Maybe the ice in my ear, or my bracelet"],
-    //     correct_option: "Maybe the ice in my ear, or my bracelet"
-    // },
     {
-        pic: {uri:'https://static.gaffa.se/images/2018/02/01/6ef6b/285798-860x484.png'},
+        song: "empty",
+        question: "Guess the song",
+        options: ["Kanye West - Homecoming", "Kid Cudi - Man on the moon"],
+        correct_option: "Kid Cudi - Man on the moon"
+    },
+    {
+        pic: require('../assets/gemini.png'),
         question: "What is the name of Kendrick Lamar's new company?",
         options: ["phLand","pgLang"],
         correct_option: "pgLang",

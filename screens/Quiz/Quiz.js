@@ -5,6 +5,7 @@ import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import NeumorphismButton from '../../components/NeumorphismButton';
 import NeumorphismStyle from '../../components/NeumorphismStyle';
+import Vinyl from '../../components/Vinyl';
 
 
 
@@ -22,6 +23,8 @@ const Quiz = (props) => {
     const [result, setResult] = useState(0)
     const [displayNextButton, setDisplayNextButton] = useState(false)
     const [displayShowModal, setdisplayShowModal] = useState(false)
+
+    const [isAnswered, setIsAnswered] = useState(false)
     
     
 
@@ -37,7 +40,8 @@ const checkAnswer = (selectedOption) => {
         setResult(result+1)
     }
     setDisplayNextButton(true)
-    
+
+    setIsAnswered(true);
 }
     
  
@@ -52,6 +56,7 @@ const checkAnswer = (selectedOption) => {
             setCorrectOption(null);
             setifOptionDisabled(false);
             setDisplayNextButton(false);
+            setIsAnswered(false);
             
             
         }
@@ -71,6 +76,7 @@ const checkAnswer = (selectedOption) => {
      setCorrectOption(null);
      setifOptionDisabled(false);
      setDisplayNextButton(false);
+     setIsAnswered(false);
      Animated.timing(progress, {
         toValue: 0,
         duration: 1000,
@@ -157,6 +163,30 @@ const checkAnswer = (selectedOption) => {
         return null;
         }
     }
+
+    const DisplaySong = () => {
+        if(Questions[currentQuestion]?.song){
+        return (
+            <View style={{
+                width: 200,
+                height: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: 90,
+                shadowOffset: {width: 12, height: 12},
+                shadowColor: '#bababa',
+                shadowOpacity: 1.0,
+                shadowRadius: 18,
+            }}> 
+            
+            <Vinyl />
+                
+            </View>
+        ) 
+    } else {
+        return null;
+        }
+    }
     
 
     const displayOption = () => {
@@ -176,43 +206,56 @@ const checkAnswer = (selectedOption) => {
                 onPress={()=> checkAnswer(option)}
                 disabled={ifOptionDisabled}
                 key={option}
-                style={{
-                    
+                style={[
+                    isAnswered && option === optionSelected ? {
+                        borderWidth: 1,
+                        borderColor: option === correctOption ? '#8bc901' : 'red'
+                    } : {},
+                    {
                     height: 50, 
                     borderRadius: 10,
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     flexDirection: 'row',
-                    width: 330,
-                    
-                    
-                }}
+                    width: 330,                    
+                }]}
                 >
                  <Text style= {{ color: '#000', textAlign: 'center',}}>{option}</Text>
                    {
-                    option==correctOption ? (
+                    isAnswered && option === optionSelected ? (
                         <View style={{
                             width: 30, height: 30, 
                             alignItems: 'center',
                             flexDirection: 'row'
                         }}>
-                            <MaterialCommunityIcons name="check" style={{
-                                color: '#8bc901',
-                                fontSize: 20
-                            }} />
-                        </View>
-                    ): option == optionSelected ? (
-                        <View style={{
-                            width: 30, height: 30,
-                            alignItems: 'center',
-                            flexDirection: 'row'
-                        }}>
-                            <MaterialCommunityIcons name="close" style={{
-                                color: 'red',
-                                fontSize: 20
-                            }} />
+                            {
+                                option === correctOption ? (
+                                    <MaterialCommunityIcons name="check" style={{
+                                        color: '#8bc901',
+                                        fontSize: 20
+                                    }} />
+                                ) : (
+                                <MaterialCommunityIcons name="close" style={{
+                                    color: 'red',
+                                    fontSize: 20
+                                }} /> )
+                            }
                         </View>
                     ) : null
+                    
+                    
+                    // option == optionSelected ? (
+                    //     <View style={{
+                    //         width: 30, height: 30,
+                    //         alignItems: 'center',
+                    //         flexDirection: 'row'
+                    //     }}>
+                    //         <MaterialCommunityIcons name="close" style={{
+                    //             color: 'red',
+                    //             fontSize: 20
+                    //         }} />
+                    //     </View>
+                    // ) : null
     
                     }
                 </NeumorphismButton>
@@ -307,6 +350,7 @@ const checkAnswer = (selectedOption) => {
             
             {displayQuestionCounter()}
             {displayQuestion()}
+            {DisplaySong()}
             {DisplayImage()}
             {displayOption()}
             {nextButton()}
