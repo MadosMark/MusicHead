@@ -3,11 +3,12 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default StyleSheet.create({
     
     quizContainer: {
-    padding: 5,
+    
     backgroundColor: '#dedede',
     height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    
     
     
     
@@ -22,9 +23,9 @@ export default StyleSheet.create({
         
     },
     questionText: {
-    fontSize: 30,
+    fontSize: 24,
     textAlign: 'center',
-    padding: 10,
+    
     color: '#F0F3F4',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,

@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     vinyl:{
         width: 200,
         height: 200,
-        margin: 5,
+        marginBottom: 5,
+        
     }
 })
 

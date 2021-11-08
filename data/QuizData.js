@@ -8,13 +8,13 @@ export default data = [
     {
         song: "empty",
         question: "Guess the song",
-        options: ["Kanye West - Homecoming", "Kid Cudi - Man on the moon"],
+        options: ["Kanye West - Homecoming", "Kid Cudi - Man on the moon", "1"],
         correct_option: "Kid Cudi - Man on the moon"
     },
     {
         pic: require('../assets/gemini.png'),
         question: "What is the name of Kendrick Lamar's new company?",
-        options: ["phLand","pgLang"],
+        options: ["phLand","pgLang", "2"],
         correct_option: "pgLang",
     },
     {
