@@ -25,13 +25,14 @@ const styles = StyleSheet.create({
 
     },
     buttonText: {
-       color: '#F0F3F4',
-       fontSize: 18,
-       shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 0.7,
-        shadowColor: "black",
-        shadowRadius: 1,
-
+        borderColor: 'black',
+                borderWidth: 0.5,
+                borderRadius: 5,
+                width: 90,
+                height: 30,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'yellow'
     },
     image: {
         height: 150,

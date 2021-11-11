@@ -17,7 +17,7 @@ const NeumorphismButton = props => {
           props.onPress();
       }
     }, [setDown]);
-    const gradColors = isDown ? ['#c8c8c8', '#eeeeee'] : ['#eeeeee', '#c8c8c8'];
+    const gradColors = isDown ? ['#c1c1c1', '#eeeeee'] : ['#dedede', '#dedede'];
     const buttonCommonStyle = {
       borderRadius: size,
       shadowRadius: size * 1.5,
@@ -66,21 +66,22 @@ const NeumorphismButton = props => {
     buttonOuter: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      borderRadius: 12,
-      shadowOffset: {width: 12, height: 12},
-      shadowColor: '#bababa',
+      borderRadius: 50,
+      shadowOffset: {width: 11, height: 11},
+      shadowColor: '#c1c1c1',
       shadowOpacity: 1.0,
       shadowRadius: 18,
       marginTop: 12,
       marginBottom: 12,
     },
     buttonInner: {
-      backgroundColor: '#ffffff',
-      borderRadius: 12,
-      shadowOffset: {width: -12, height: -12},
-      shadowColor: '#ffffff',
+      backgroundColor: '#dedede',
+      borderRadius: 50,
+      shadowOffset: {width: -11, height: -11},
+      shadowColor: '#fbfbfb',
       shadowOpacity: 1.0,
       shadowRadius: 18,
+    
     },
     buttonFace: {
       borderRadius: 12,

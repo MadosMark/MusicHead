@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { SafeAreaView, View, Text, Image, Modal, Animated } from 'react-native'
 import styles from './styles'
-import data from '../../data/QuizData';
+// import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import NeumorphismButton from '../../components/NeumorphismButton';
 import NeumorphismStyle from '../../components/NeumorphismStyle';
 import Vinyl from '../../components/Vinyl';
 
-
+import data from '../../data/data'
 
 
 
@@ -15,7 +15,10 @@ import Vinyl from '../../components/Vinyl';
 
 const Quiz = (props) => {
 
-    const Questions = data;
+    // const Questions = data;
+
+    const [Questions] = useState(data);
+
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [optionSelected, setOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
@@ -143,9 +146,9 @@ const checkAnswer = (selectedOption) => {
             <Image 
             source={Questions[currentQuestion]?.pic}
             style={{
-                width: 110, 
-                height: 110,
-                borderRadius: 20,
+                width: 150, 
+                height: 150,
+                borderRadius: 10,
                 resizeMode: 'cover',
                 backgroundColor: '#000'
                 }}/> 
@@ -156,6 +159,7 @@ const checkAnswer = (selectedOption) => {
         return null;
         }
     }
+
 
     const DisplaySong = () => {
         if(Questions[currentQuestion]?.song){
@@ -172,7 +176,10 @@ const checkAnswer = (selectedOption) => {
                 shadowRadius: 18,
             }}> 
             
-            <Vinyl />
+            <Vinyl
+                song={Questions[currentQuestion]?.song}
+                vinylImage={require("../../assets/vinyl2.png")}
+            />
                 
             </View>
         ) 
@@ -262,9 +269,7 @@ const checkAnswer = (selectedOption) => {
                   width: 150,
                   alignItems: 'center',
                   justifyContent: 'center', 
-                  
               }}
-              
             >
                 <Text style={styles.nextButtonText}>Next</Text>
               </NeumorphismButton>
@@ -328,13 +333,10 @@ const checkAnswer = (selectedOption) => {
     return (
         <SafeAreaView style={styles.quizContainer}>
             <View style={{
-                
-                // height: '80%',
                 alignItems: 'center',
                 justifyContent: 'flex-end',
                 paddingTop: 15,
-                
-                
+                backgroundColor: '#dedede'
             }}>
             {displayProgressBar()}
             {displayQuestionCounter()}
@@ -344,12 +346,9 @@ const checkAnswer = (selectedOption) => {
             {displayOption()}
             </View>
             <View style={{
-                
                 justifyContent: 'flex-end',
                 alignItems: 'center',
                 flex: 1,
-                
-                
             }}>
             {nextButton()}
             </View>

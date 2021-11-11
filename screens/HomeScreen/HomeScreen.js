@@ -1,25 +1,27 @@
-import React from 'react'
-import { Image, View, Text } from 'react-native'
-import Title from '../../components/Title'
+import React, {useState} from 'react'
+import { Image, View, Text, Animated } from 'react-native'
 import styles from './styles';
-import Vinyl from '../../components/Vinyl';
-import NeumorphismButton from '../../components/NeumorphismButton';
-import NeumorphismStyle from '../../components/NeumorphismStyle';
-
-
-
+import NeumorphButtonHome from '../../components/NeumorphButtonHome';
 
 
 const HomeScreen = (props) => {
-
-    
     return (
         <View style={styles.container}>
-            <NeumorphismStyle>
             <View>
-                <Title />
+            <Text style={{
+                fontFamily: 'Anurati',
+                fontSize: 50,
+                color: '#dedede',
+                opacity: 1,
+                shadowOffset: {width: -1, height: -0},
+                shadowColor: '#000',
+                shadowOpacity: 0.5,
+                shadowRadius: 2,
+                
+            }}>MUSIC HEAD</Text>
             </View>
-            </NeumorphismStyle>
+
+
             <View style={styles.imageContainer}>
                 <Image source={require('../../assets/waves.png')}
                 style={styles.image}
@@ -27,16 +29,20 @@ const HomeScreen = (props) => {
                 />
             </View>
             
-            
-            <NeumorphismButton onPress={() => props.navigation.navigate("Quiz")}>
+            <NeumorphButtonHome onPress={() => props.navigation.navigate("Quiz")}>
+         
                 <Text style={{
-                    color: '#F0F3F4',
-                    shadowOffset: {width: 0, height: 1},
-                    shadowOpacity: 0.9,
-                    shadowColor: "black",
+                    color: '#dedede',
+                    fontFamily: 'Anurati',
+                    fontSize: 30,
+                    shadowOffset: {width: -1, height: -0},
+                    shadowColor: '#000',
+                    shadowOpacity: 0.6,
                     shadowRadius: 0.8,
-                }}>Enter Here</Text>
-            </NeumorphismButton>
+                }}>ENTER HERE</Text>
+                
+            </NeumorphButtonHome>
+            
         </View>
             
     )

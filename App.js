@@ -1,20 +1,33 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Vinyl from './components/Vinyl';
+import { SafeAreaView, Text } from 'react-native';
 import MyStack from './navigation/navigator';
 
-
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 
 export default function App() {
-  return (
-    <NavigationContainer >
-       <MyStack />
-       <StatusBar style="auto" />
+  let [fontsLoaded] = useFonts({
+    'Anurati': require('./fonts/anurati.otf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+         <MyStack />
+         <StatusBar style="auto" />
       </NavigationContainer>
 
-  );
+      // <SafeAreaView style={{
+      //   flex: 1,
+      //   alignItems: 'center',
+      //   justifyContent: 'center',
+      // }}>
+      //   <Text>my_app</Text>
+      // </SafeAreaView>
+    );
+  }
 }
-
-

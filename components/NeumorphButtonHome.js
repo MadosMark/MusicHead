@@ -1,15 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {useCallback, useState} from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import {View, StyleSheet} from 'react-native';
+import {View, TouchableWithoutFeedback, StyleSheet, ViewPropTypes} from 'react-native';
 
 
-const NeumorphismStyle = props => {
+const NeumorphButtonHome = props => {
     const {size = 12} = props;
-    
-    
-    const gradColors = ['#dedede', '#dedede'];
-
+    const [isDown, setDown] = useState(false);
+    const handlePressIn = useCallback(() => {
+      setDown(true);
+    }, [setDown]);
+    const handlePressOut = useCallback(() => {
+      setDown(false);
+      if (props.onPress) {
+          props.onPress();
+      }
+    }, [setDown]);
+    const gradColors = isDown ? ['#c1c1c1', '#eeeeee'] : ['#dedede', '#dedede'];
     const buttonCommonStyle = {
       borderRadius: size,
       shadowRadius: size * 1.5,
@@ -28,6 +36,10 @@ const NeumorphismStyle = props => {
     };
   
     return (
+      <TouchableWithoutFeedback
+        disabled={props.disabled}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}>
         <View style={[styles.buttonOuter, buttonCommonStyle, buttonOuterStyle]}>
           <View style={[styles.buttonInner, buttonCommonStyle, buttonInnerStyle]}>
             <LinearGradient
@@ -40,12 +52,13 @@ const NeumorphismStyle = props => {
             </LinearGradient>
           </View>
         </View>
+       </TouchableWithoutFeedback>
     );
   };
   
-  NeumorphismStyle.propTypes = {
+  NeumorphButtonHome.propTypes = {
     children: PropTypes.node,
-    style: PropTypes.object,
+    style: ViewPropTypes.style,
     size: PropTypes.number,
   };
   
@@ -56,7 +69,7 @@ const NeumorphismStyle = props => {
       borderRadius: 50,
       shadowOffset: {width: 11, height: 11},
       shadowColor: '#c1c1c1',
-      shadowOpacity: 1.0,
+      shadowOpacity: 1,
       shadowRadius: 18,
       marginTop: 12,
       marginBottom: 12,
@@ -68,12 +81,15 @@ const NeumorphismStyle = props => {
       shadowColor: '#fbfbfb',
       shadowOpacity: 1.0,
       shadowRadius: 18,
+      
     
     },
     buttonFace: {
       borderRadius: 12,
       padding: 12,
+      justifyContent: 'center',
+      alignItems: 'center'
     },
   });
   
-  export default NeumorphismStyle;
+  export default NeumorphButtonHome;

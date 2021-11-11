@@ -1,20 +1,39 @@
 import React, { useState } from 'react'
 import { Animated, StyleSheet, View, Text, Easing } from 'react-native'
 import NeumorphismButton from './NeumorphismButton'
-
 import { Audio } from 'expo-av';
+import { render } from 'react-dom';
 
-const Vinyl = () => {
+function RenderTitle({title}) {
+    // console.log('title_props', props.title);
+
+    // const {
+    //     first_name,
+    //     last_name,
+    //     age,
+    // } = props;
+
+    return (
+        <>
+        <Text>{title}</Text>
+        {/* <Text>{last_name}</Text>
+        <Text>{age}</Text> */}
+        </>
+    )
+}
+
+const Vinyl = (props) => {
+    const {
+        song,
+        vinylImage,
+    } = props;
+
     let rotateValueHolder = new Animated.Value(0)
     const [sound, setSound] = useState(null);
 
     async function playSound() {
         console.log('Loading Sound');
-        const { sound } = await Audio.Sound.createAsync(
-           require('../music/manOnTheMoon.mp3')
-        );
-
-        // console.log('sound', sound);
+        const { sound } = await Audio.Sound.createAsync(props.song);
 
         setSound(sound);
         
@@ -62,13 +81,19 @@ const Vinyl = () => {
 
     return (
         <View style={styles.Vinylcontainer}>
+            {/* <RenderTitle title="hehehe" /> */}
             <Animated.Image
-            source={require('../assets/vinyl.png')}
-            style={[styles.vinyl,
-            {transform: [{rotate: RotateData}]}]}
+            source={vinylImage || require("../assets/vinyl2.png")}
+            style={[
+                styles.vinyl,
+                {transform: [{rotate: RotateData}]}
+            ]}
             />
-            <NeumorphismButton
-            onPress={playSound}>
+            <NeumorphismButton onPress={() => {
+                if (props.song) {
+                    playSound();
+                }
+            }}>
                 <Text>Listen</Text>
             </NeumorphismButton>
         </View>
@@ -77,12 +102,20 @@ const Vinyl = () => {
 
 const styles = StyleSheet.create({
     Vinylcontainer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 2,
+        
     },
     vinyl:{
         width: 200,
         height: 200,
         marginBottom: 5,
+        borderRadius: 150,
+        shadowOffset: {width: 2, height: 2},
+        shadowColor: '#000',
+        shadowOpacity: 0.6,
+        shadowRadius: 4,
+        
         
     }
 })

@@ -26,6 +26,7 @@ export default StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     
+    
     color: '#F0F3F4',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
@@ -125,8 +126,6 @@ export default StyleSheet.create({
         shadowColor: "black",
         shadowRadius: 0.8,
         fontSize: 20,
-        textAlign: 'center',
-
     },
     
 
