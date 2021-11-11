@@ -135,12 +135,12 @@ const checkAnswer = (selectedOption) => {
         if(Questions[currentQuestion]?.pic){
         return (
             <View style={{
-                marginTop: 20,
-                borderRadius: 12,
-                shadowOffset: {width: 12, height: 12},
-                shadowColor: '#bababa',
-                shadowOpacity: 1.0,
-                shadowRadius: 18,
+                marginTop: 10,
+                shadowOffset: {width: 0, height: 0},
+                shadowColor: '#000',
+                shadowOpacity: 0.4,
+                shadowRadius: 2,
+                marginBottom: 15,
             }}> 
             
             <Image 
@@ -192,7 +192,7 @@ const checkAnswer = (selectedOption) => {
     const displayOption = () => {
         return (
             <View style={{
-                paddingVertical: 20,
+                paddingVertical: 5,
                 
                 }}>
                 {
@@ -219,7 +219,20 @@ const checkAnswer = (selectedOption) => {
                           
                 }]}
                 >
-                 <Text numberOfLines={4} style= {{ color: '#000', textAlign: 'center', marginHorizontal: 32}}>{option}</Text>
+                 <Text numberOfLines={4} style= {{ 
+                 textAlign: 'center', 
+                 marginHorizontal: 32, 
+                 fontFamily: 'NovaSquare',
+                 color: '#dedede',
+                 opacity: 1,
+                 shadowOffset: {width: -0.5, height: -0},
+                 shadowColor: '#000',
+                 shadowOpacity: 0.8,
+                 shadowRadius: 0.7,
+                 fontSize: 17
+
+
+                 }}>{option}</Text>
                    {
                     isAnswered && option === optionSelected ? (
                         <View style={{
@@ -377,16 +390,18 @@ const checkAnswer = (selectedOption) => {
 
                         <Text style={{
                             textAlign: 'center',
-                            fontSize: 35, 
-                            fontWeight: 'bold',
-                            color: '#F0F3F4',
-                            shadowOffset: {width: 0, height: 2},
-                            shadowOpacity: 0.7,
-                            shadowColor: "black",
+                            fontSize: 30, 
+                            color: '#dedede',
+                            opacity: 1,
+                            shadowOffset: {width: -1, height: -0},
+                            shadowColor: '#000',
                             shadowRadius: 0.8,
+                            shadowOpacity: 0.8,
                             paddingVertical: 45,
+                            fontFamily: 'NovaSquare',
+                            
                             }}> 
-                            { result> (Questions.length/2) ? 'You are definitely a Music Head!' : 'You should study more my dude!' }
+                            { result> (Questions.length/2) ? 'YOU ARE DEFINITELY A MUSIC HEAD!' : 'YOU SHOULD STUDY MORE MY DUDE!' }
                             </Text>
 
                             </View>
@@ -402,19 +417,21 @@ const checkAnswer = (selectedOption) => {
                         }}>
                             <Text style={{
                                 fontSize: 25,
-                                color: '#F0F3F4',
-                                shadowOffset: {width: 0, height: 2},
+                                color: '#dedede',
+                                opacity: 1,
+                                shadowOffset: {width: -0.5, height: -0},
+                                shadowColor: '#000',
+                                shadowRadius: 0.6,
                                 shadowOpacity: 0.8,
-                                shadowColor: "black",
-                                shadowRadius: 0.8,
                             }}>{result} </Text>
                             <Text style={{
                                     fontSize: 25,
-                                    color: '#F0F3F4',
-                                    shadowOffset: {width: 0, height: 2},
+                                    color: '#dedede',
+                                    opacity: 1,
+                                    shadowOffset: {width: -0.5, height: -0},
+                                    shadowColor: '#000',
+                                    shadowRadius: 0.6,
                                     shadowOpacity: 0.8,
-                                    shadowColor: "black",
-                                    shadowRadius: 0.8,
                                 }}>/ { Questions.length }</Text>
                         </View>
                         
@@ -427,12 +444,13 @@ const checkAnswer = (selectedOption) => {
                             
                         }}>
                             <Text style={{
-                                color: '#F0F3F4',
-                                fontSize: 20,
-                                shadowOffset: {width: 0, height: 1},
-                                shadowOpacity: 0.8,
-                                shadowColor: "black",
-                                shadowRadius: 1,
+                                color: '#dedede',
+                                opacity: 1,
+                                shadowOffset: {width: -0.8, height: -0},
+                                shadowColor: '#000',
+                                shadowRadius: 0.7,
+                                shadowOpacity: 0.7,
+                                fontSize: 22,
                                 textAlign: 'center',
                             }}>Retry Quiz</Text>
                         </NeumorphismButton>

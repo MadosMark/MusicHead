@@ -23,14 +23,14 @@ export default StyleSheet.create({
         
     },
     questionText: {
-    fontSize: 24,
+    fontSize: 30,
     textAlign: 'center',
-    
-    
-    color: '#F0F3F4',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.8,
-    shadowColor: "black",
+    fontFamily: 'NovaSquare',
+    color: '#dedede',
+    opacity: 1,
+    shadowOffset: {width: -0.5, height: -0},
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
     shadowRadius: 1,
 
     },
@@ -98,11 +98,13 @@ export default StyleSheet.create({
     },
 
     giveUpText: {
-    color: '#F0F3F4',
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.9,
-    shadowColor: "black",
-    shadowRadius: 0.8,
+        color: '#dedede',
+        opacity: 1,
+        shadowOffset: {width: -0.7, height: -0},
+        shadowColor: '#000',
+        shadowRadius: 0.6,
+        shadowOpacity: 0.7,
+        fontSize: 20
     },
 
     nextButton: {
@@ -120,12 +122,14 @@ export default StyleSheet.create({
     },
 
     nextButtonText: {
-        color: '#F0F3F4',
-        shadowOffset: {width: 0, height: 1},
-        shadowOpacity: 0.9,
-        shadowColor: "black",
-        shadowRadius: 0.8,
-        fontSize: 20,
+
+        color: '#dedede',
+        opacity: 1,
+        shadowOffset: {width: -0.7, height: -0},
+        shadowColor: '#000',
+        shadowRadius: 1,
+        shadowOpacity: 0.7,
+        fontSize: 22,
     },
     
 

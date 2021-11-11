@@ -94,7 +94,16 @@ const Vinyl = (props) => {
                     playSound();
                 }
             }}>
-                <Text>Listen</Text>
+                <Text style={{
+                   color: '#dedede',
+                   opacity: 1,
+                   shadowOffset: {width: -0.6, height: -0},
+                   shadowColor: '#000',
+                   shadowRadius: 0.6,
+                   shadowOpacity: 0.7,
+                   fontFamily: 'NovaSquare',
+                   fontSize: 18,
+                }}>Listen</Text>
             </NeumorphismButton>
         </View>
     )
@@ -111,12 +120,10 @@ const styles = StyleSheet.create({
         height: 200,
         marginBottom: 5,
         borderRadius: 150,
-        shadowOffset: {width: 2, height: 2},
+        shadowOffset: {width: 0, height: 1},
         shadowColor: '#000',
-        shadowOpacity: 0.6,
-        shadowRadius: 4,
-        
-        
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
     }
 })
 

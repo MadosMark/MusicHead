@@ -15,8 +15,8 @@ const HomeScreen = (props) => {
                 opacity: 1,
                 shadowOffset: {width: -1, height: -0},
                 shadowColor: '#000',
-                shadowOpacity: 0.5,
-                shadowRadius: 2,
+                shadowOpacity: 0.8,
+                shadowRadius: 0.9,
                 
             }}>MUSIC HEAD</Text>
             </View>
@@ -37,7 +37,7 @@ const HomeScreen = (props) => {
                     fontSize: 30,
                     shadowOffset: {width: -1, height: -0},
                     shadowColor: '#000',
-                    shadowOpacity: 0.6,
+                    shadowOpacity: 0.7,
                     shadowRadius: 0.8,
                 }}>ENTER HERE</Text>
                 
