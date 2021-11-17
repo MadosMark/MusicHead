@@ -23,7 +23,7 @@ const HomeScreen = (props) => {
 
 
             <View style={styles.imageContainer}>
-                <Image source={require('../../assets/waves.png')}
+                <Image source={require('../../assets/images/waves.png')}
                 style={styles.image}
                 resizeMode="contain"
                 />

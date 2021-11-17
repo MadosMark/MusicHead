@@ -170,8 +170,6 @@ const checkAnswer = (selectedOption) => {
         return (
             <View style={{
                 
-                
-                
             }}> 
             <Video
         ref={video}
@@ -237,7 +235,7 @@ const checkAnswer = (selectedOption) => {
             
             <Vinyl
                 song={Questions[currentQuestion]?.song}
-                vinylImage={require("../../assets/vinyl2.png")}
+                vinylImage={require("../../assets/vinyls/vinyl2.png")}
             />
                 
             </View>

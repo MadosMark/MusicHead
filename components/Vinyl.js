@@ -83,7 +83,7 @@ const Vinyl = (props) => {
         <View style={styles.Vinylcontainer}>
             {/* <RenderTitle title="hehehe" /> */}
             <Animated.Image
-            source={vinylImage || require("../assets/vinyl2.png")}
+            source={vinylImage || require("../assets/vinyls/vinyl2.png")}
             style={[
                 styles.vinyl,
                 {transform: [{rotate: RotateData}]}
