@@ -1,5 +1,11 @@
 export default [
     {
+        video: require('../assets/kanyeWest.mp4'),
+        question: "Why is Big Sean the worst artist Kanye ever signed?",
+        options: ["He makes bad music","Big Sean turned on Kanye"],
+        correct_option: "Big Sean turned on Kanye"
+    },
+    {
         pic: {uri:'https://www.eventworld.co/blob/images/pg/the-weeknd_d186b_opgh.jpg'},
         question: "When did The Weeknd release his album After Hours?",
         image: require('../assets/gemini.png'),
@@ -36,4 +42,5 @@ export default [
         options: ["Libra","Gemini"],
         correct_option: "Gemini"
     },
+   
 ]

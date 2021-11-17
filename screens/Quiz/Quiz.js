@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, Image, Modal, Animated } from 'react-native'
+import { SafeAreaView, View, Text, Image, Modal, Animated, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
 // import data from '../../data/QuizData';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import NeumorphismButton from '../../components/NeumorphismButton';
 import NeumorphismStyle from '../../components/NeumorphismStyle';
 import Vinyl from '../../components/Vinyl';
-
 import data from '../../data/data'
+import { Video, AVPlaybackStatus } from 'expo-av';
+
+
 
 
 
@@ -26,7 +28,6 @@ const Quiz = (props) => {
     const [result, setResult] = useState(0)
     const [displayNextButton, setDisplayNextButton] = useState(false)
     const [displayShowModal, setdisplayShowModal] = useState(false)
-
     const [isAnswered, setIsAnswered] = useState(false)
     
     
@@ -132,6 +133,7 @@ const checkAnswer = (selectedOption) => {
     }
 
     const DisplayImage = () => {
+        
         if(Questions[currentQuestion]?.pic){
         return (
             <View style={{
@@ -142,7 +144,6 @@ const checkAnswer = (selectedOption) => {
                 shadowRadius: 2,
                 marginBottom: 15,
             }}> 
-            
             <Image 
             source={Questions[currentQuestion]?.pic}
             style={{
@@ -154,6 +155,64 @@ const checkAnswer = (selectedOption) => {
                 }}/> 
                 
             </View>
+        ) 
+    } else {
+        return null;
+        }
+    }
+
+
+    const DisplayVideo = () => {
+        const video = React.useRef(null);
+        const [status, setStatus] = React.useState({});
+
+        if(Questions[currentQuestion]?.video){
+        return (
+            <View style={{
+                
+                
+                
+            }}> 
+            <Video
+        ref={video}
+        style={{
+            width: 300,
+            height: 200,
+            marginTop: 10,
+            marginBottom: 10,
+            
+        }}
+        source={ Questions[currentQuestion]?.video}
+        // useNativeControls
+        resizeMode="contain"
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
+      />
+      <View style={{
+        alignItems: 'center'
+      }}>
+        <NeumorphismButton
+          onClick={() => {
+              status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
+          }}
+          style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingVertical: 10,
+          }}
+          ><Text style={{
+            color: '#dedede',
+                   opacity: 1,
+                   shadowOffset: {width: -0.6, height: -0},
+                   shadowColor: '#000',
+                   shadowRadius: 0.6,
+                   shadowOpacity: 0.7,
+                   fontFamily: 'NovaSquare',
+                   fontSize: 18,
+          }}>
+              {status.isPlaying ? 'Pause' : 'Play'}
+              </Text></NeumorphismButton>
+      </View>
+        </View>
         ) 
     } else {
         return null;
@@ -356,6 +415,7 @@ const checkAnswer = (selectedOption) => {
             {displayQuestion()}
             {DisplaySong()}
             {DisplayImage()}
+            {DisplayVideo()}
             {displayOption()}
             </View>
             <View style={{

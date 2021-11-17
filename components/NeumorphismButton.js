@@ -37,6 +37,7 @@ const NeumorphismButton = props => {
   
     return (
       <TouchableWithoutFeedback
+        onPress={props.onClick}
         disabled={props.disabled}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}>
