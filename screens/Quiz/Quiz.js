@@ -15,6 +15,7 @@ import { Video, AVPlaybackStatus } from 'expo-av';
 
 
 
+
 const Quiz = (props) => {
 
     // const Questions = data;
@@ -95,26 +96,28 @@ const checkAnswer = (selectedOption) => {
         <View>
             <View style={{
                 flexDirection: 'row',
-                marginBottom: 15,
+                marginBottom: 15
                 
             }}>
                 <Text style={{
-                    shadowOffset: {width: 0, height: 2},
-                    shadowOpacity: 0.8,
-                    shadowColor: "black",
-                    shadowRadius: 1,
-                    color: '#fff',
+                    color: '#dedede',
+                    fontFamily: 'Anurati',
                     fontSize: 18,
+                    shadowOffset: {width: -0.7, height: -0},
+                    shadowColor: '#000',
+                    shadowOpacity: 0.7,
+                    shadowRadius: 0.7,
                     
                 }}>{currentQuestion+1}</Text>
                 <Text style={{
-                    shadowOffset: {width: 0, height: 2},
-                    shadowOpacity: 0.8,
-                    shadowColor: "black",
-                    shadowRadius: 1,
-                    color: '#fff',
+                    color: '#dedede',
+                    fontFamily: 'Anurati',
                     fontSize: 18,
-                }}> / {Questions.length}</Text>
+                    shadowOffset: {width: -0.7, height: -0},
+                    shadowColor: '#000',
+                    shadowOpacity: 0.7,
+                    shadowRadius: 0.7,
+                }}> - {Questions.length}</Text>
             </View>
         </View>
 
@@ -144,14 +147,15 @@ const checkAnswer = (selectedOption) => {
                 shadowRadius: 2,
                 marginBottom: 15,
             }}> 
-            <Image 
+            <Image
             source={Questions[currentQuestion]?.pic}
             style={{
-                width: 150, 
-                height: 150,
+                width: 200, 
+                height: 200,
                 borderRadius: 10,
                 resizeMode: 'cover',
-                backgroundColor: '#000'
+                marginVertical: 20,
+                backgroundColor: '#e1e4e8'
                 }}/> 
                 
             </View>
@@ -170,23 +174,27 @@ const checkAnswer = (selectedOption) => {
         return (
             <View style={{
                 
+                
             }}> 
             <Video
         ref={video}
         style={{
+            backgroundColor: '#e1e4e8',
             width: 300,
             height: 200,
             marginTop: 10,
             marginBottom: 10,
+
             
         }}
         source={ Questions[currentQuestion]?.video}
         // useNativeControls
-        resizeMode="contain"
+        resizeMode="cover"
         onPlaybackStatusUpdate={status => setStatus(() => status)}
       />
       <View style={{
-        alignItems: 'center'
+        alignItems: 'center',
+        
       }}>
         <NeumorphismButton
           onClick={() => {
@@ -195,17 +203,19 @@ const checkAnswer = (selectedOption) => {
           style={{
               alignItems: 'center',
               justifyContent: 'center',
-              paddingVertical: 10,
+              marginBottom: -10,
+              marginTop: -10,
+              
           }}
           ><Text style={{
             color: '#dedede',
                    opacity: 1,
                    shadowOffset: {width: -0.6, height: -0},
                    shadowColor: '#000',
-                   shadowRadius: 0.6,
-                   shadowOpacity: 0.7,
+                   shadowRadius: 0.8,
+                   shadowOpacity: 0.8,
                    fontFamily: 'NovaSquare',
-                   fontSize: 18,
+                   fontSize: 15
           }}>
               {status.isPlaying ? 'Pause' : 'Play'}
               </Text></NeumorphismButton>
@@ -235,7 +245,7 @@ const checkAnswer = (selectedOption) => {
             
             <Vinyl
                 song={Questions[currentQuestion]?.song}
-                vinylImage={require("../../assets/vinyls/vinyl2.png")}
+                vinylImage={require("../../assets/vinyls/vinyl3.png")}
             />
                 
             </View>
