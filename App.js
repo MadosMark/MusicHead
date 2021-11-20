@@ -1,16 +1,16 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import MyStack from './components/navigator';
-import { NovaSquare_400Regular } from '@expo-google-fonts/nova-square'
-import AppLoading from 'expo-app-loading';
-import { useFonts } from 'expo-font';
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { SafeAreaView, Text } from "react-native";
+import MyStack from "./components/navigator";
+import { NovaSquare_400Regular } from "@expo-google-fonts/nova-square";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
-    'Anurati': require('./assets/fonts/anurati.otf'),
-    'NovaSquare': NovaSquare_400Regular,
+    Anurati: require("./assets/fonts/anurati.otf"),
+    NovaSquare: NovaSquare_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -18,8 +18,8 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-         <MyStack />
-         <StatusBar style="auto" />
+        <MyStack />
+        <StatusBar style="auto" />
       </NavigationContainer>
 
       // <SafeAreaView style={{
