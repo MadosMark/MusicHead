@@ -129,64 +129,73 @@ export default [
     options: ["1.6 Billion views", "800 Million views", "1.1 Billion views"],
     correct_option: "1.6 Billion views",
   },
-  // {  //LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3
-  //     video: require('../assets/videos/joynerLucas.mp4'),
-  //     question: "Which artist made this grammy nominated video?",
-  //     options: ["Joyner Lucas","Chance The Rapper","J Cole"],
-  //     correct_option: "Joyner Lucas"
-  // },
-  // {
-  //     pic: require('../assets/images/popSmoke.webp'),
-  //     question: "Which song made Pop Smoke famous?",
-  //     options: ["PTSD","Meet the Woo", "Dior"],
-  //     correct_option: "Dior",
-  // },
-  // {
-  //     song: require('../assets/music/viceCity.mp3'),
-  //     question: "Which song made Pop Smoke famous?",
-  //     options: ["PTSD", "Meet the Woo", "Dior"],
-  //     correct_option: "Dior"
-  // },
-  // {
-  //     pic: require('../assets/images/d12.webp'),
-  //     question: "How many songs does this album contain?",
-  //     options: ["19","21","23"],
-  //     correct_option: "21",
-  // },
-  // {
-  //     video: require('../assets/videos/jayZ.mp4'),
-  //     question: "What album is Jay-Z recording here?",
-  //     options: ["The Blueprint","American Gangster", "The Black Album"],
-  //     correct_option: "The Black Album"
-  // },
-  // {
-  //     pic: require('../assets/images/50cent.webp'),
-  //     question: "How many times has 50 Cent been shot?",
-  //     options: ["5 times","2 times", "9 times"],
-  //     correct_option: "9 times",
-  // },
-  // {
-  //     song: require('../assets/music/wuTangClan.mp3'),
-  //     question: "Which group does this song belong to?",
-  //     options: ["Cypress Hill", "Wu-Tang Clan", "The Roots"],
-  //     correct_option: "Wu-Tang Clan"
-  // },
-  // {
-  //     pic: require('../assets/images/dmx.webp'),
-  //     question: "How old was dmx when he started his career?",
-  //     options: ["14 years old","21 years old","17 years old"],
-  //     correct_option: "14 years old"
-  // },
-  // {
-  //     song: require('../assets/music/geazyBadBoy.mp3'),
-  //     question: "Who is G-Eazy dissing in this song?",
-  //     options: ["Lil Wayne", "Machine Gun Kelly", "Asap Rocky"],
-  //     correct_option: "Machine Gun Kelly"
-  // },
-  // {
-  //     pic: require('../assets/images/macklemore.webp'),
-  //     question: "How many views has Macklemore's song 'Thrift Shop' on youtube?",
-  //     options: ["1.6 Billion views","800 Million views", "1.1 Billion views"],
-  //     correct_option: "1.6 Billion views",
-  // },
+  {
+    //LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3
+    video: require("../assets/videos/joynerLucas.mp4"),
+    question: "Which artist made this grammy nominated video?",
+    options: ["Joyner Lucas", "Chance The Rapper", "J Cole"],
+    correct_option: "Joyner Lucas",
+  },
+  {
+    pic: require("../assets/images/popSmoke.webp"),
+    question: "Which song made Pop Smoke famous?",
+    options: ["PTSD", "Meet the Woo", "Dior"],
+    correct_option: "Dior",
+  },
+  {
+    song: require("../assets/music/macMillerRight.mp3"),
+    question: "Which artist is this?",
+    options: ["Shawn Mendes", "Mac Miller", "Ty Dolla Sign"],
+    correct_option: "Mac Miller",
+  },
+  {
+    pic: require("../assets/images/lilWayne.webp"),
+    question: "Which album is Lil Wayne's best-selling so far?",
+    options: ["Tha Carter III", "Tha Carter V", "Tha Carter IV"],
+    correct_option: "Tha Carter III",
+  },
+  {
+    video: require("../assets/videos/youngThugVideo.mp4"),
+    question: "Who signed Young Thug the first time?",
+    options: ["Future", "Travis Scott", "Gucci Mane"],
+    correct_option: "Gucci Mane",
+  },
+  {
+    pic: require("../assets/images/macMillerCircles.webp"),
+    question: "Mac Miller made two coherent albums, what are the titles?",
+    options: [
+      "Running in Circles",
+      "Swimming in Circles",
+      "Walking in Circles",
+    ],
+    correct_option: "Swimming in Circles",
+  },
+  {
+    song: require("../assets/music/fade.mp3"),
+    question: "Who is this artist the features on Kanye West - Fade?",
+    options: ["Blackbear", "Clever", "Post Malone"],
+    correct_option: "Post Malone",
+  },
+  {
+    pic: require("../assets/images/nf.webp"),
+    question: "Which religion is NF associated with?",
+    options: ["Buddhism", "Islam", "Christianity"],
+    correct_option: "Christianity",
+  },
+  {
+    video: require("../assets/videos/lilDicky.mp4"),
+    question: "What is the name of Lil Dicky's TV Show?",
+    options: ["Professional Rapper", "Lil Dicky", "Dave"],
+    correct_option: "Dave",
+  },
+  {
+    pic: require("../assets/images/drake.webp"),
+    question: "What award did Drake win in 2021?",
+    options: [
+      "Artist of the Year",
+      "Artist of the Decade",
+      "Artist of the Month",
+    ],
+    correct_option: "Artist of the Decade",
+  },
 ];

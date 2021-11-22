@@ -45,6 +45,7 @@ const HomeScreen = (props) => {
             shadowColor: "#000",
             shadowOpacity: 0.7,
             shadowRadius: 0.8,
+            marginBottom: -5,
           }}
         >
           ENTER HERE

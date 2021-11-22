@@ -8,14 +8,16 @@ import NeumorphismButton from "../../components/NeumorphismButton";
 import NeumorphismStyle from "../../components/NeumorphismStyle";
 import Vinyl from "../../components/Vinyl";
 import api from "../../api/api";
+import { Ionicons } from "@expo/vector-icons";
 
 import styles from "./QuizScreen.styles";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const QuizScreen = (props) => {
   const rounds = {
-    level1: api.slice(0, 5),
-    level2: api.slice(5, 10),
-    level3: api.slice(10, 15),
+    level1: api.slice(0, 10),
+    level2: api.slice(10, 20),
+    level3: api.slice(20, 30),
   };
 
   const [currentRound, setCurrentRound] = useState({
@@ -67,6 +69,7 @@ const QuizScreen = (props) => {
       setifOptionDisabled(false);
       setDisplayNextButton(false);
       setIsAnswered(false);
+      setMusicHasStopped(false);
     }
     Animated.timing(progress, {
       toValue: currentQuestion + 1,
@@ -195,11 +198,10 @@ const QuizScreen = (props) => {
               backgroundColor: "#e1e4e8",
               width: 325,
               height: 200,
-              marginBottom: 10,
+              marginBottom: 0,
               borderRadius: 20,
             }}
             source={currentRound.data[currentQuestion]?.video}
-            // useNativeControls
             resizeMode="cover"
             onPlaybackStatusUpdate={(status) => setStatus(() => status)}
           />
@@ -208,32 +210,44 @@ const QuizScreen = (props) => {
               alignItems: "center",
             }}
           >
-            <NeumorphismButton
-              onClick={() => {
+            <TouchableOpacity
+              onPress={() => {
                 status.isPlaying
                   ? video.current.pauseAsync()
                   : video.current.playAsync();
               }}
               style={{
-                alignItems: "center",
-                justifyContent: "center",
+                padding: 12,
+                color: "#D0D3D4",
+                opacity: 1,
+                shadowOffset: { width: -0.5, height: -0 },
+                shadowColor: "#000",
+                shadowRadius: 0.7,
+                shadowOpacity: 0.7,
               }}
             >
-              <Text
-                style={{
-                  color: "#D0D3D4",
-                  opacity: 1,
-                  shadowOffset: { width: -0.6, height: -0 },
-                  shadowColor: "#000",
-                  shadowRadius: 0.8,
-                  shadowOpacity: 0.8,
-                  fontFamily: "NovaSquare",
-                  fontSize: 15,
-                }}
-              >
-                {status.isPlaying ? "Pause" : "Play"}
-              </Text>
-            </NeumorphismButton>
+              {status.isPlaying ? (
+                <Ionicons
+                  name="ios-pause-circle-outline"
+                  size={38}
+                  color="#D0D3D4"
+                  style={{
+                    textAlign: "center",
+                    paddingLeft: 2,
+                  }}
+                />
+              ) : (
+                <Ionicons
+                  name="ios-play-circle-outline"
+                  size={38}
+                  color="#D0D3D4"
+                  style={{
+                    textAlign: "center",
+                    paddingLeft: 2,
+                  }}
+                />
+              )}
+            </TouchableOpacity>
           </View>
         </View>
       );
@@ -261,7 +275,6 @@ const QuizScreen = (props) => {
   const [currentImage, setCurrentImage] = useState(null);
   const [musicHasStopped, setMusicHasStopped] = useState(false);
   React.useEffect(() => {
-    console.log("get_random_image");
     getRandomImage();
   }, [currentQuestion]);
 
@@ -274,7 +287,7 @@ const QuizScreen = (props) => {
             height: 100,
             justifyContent: "center",
             alignItems: "center",
-            margin: 90,
+            marginVertical: 80,
             shadowOffset: { width: 12, height: 12 },
             shadowColor: "#bababa",
             shadowOpacity: 1.0,
@@ -297,7 +310,7 @@ const QuizScreen = (props) => {
     return (
       <View
         style={{
-          paddingVertical: 5,
+          paddingVertical: 0,
         }}
       >
         {currentRound.data[currentQuestion]?.options.map((option) => (
@@ -415,6 +428,28 @@ const QuizScreen = (props) => {
     );
   };
 
+  const retryQuizButton = () => {
+    return (
+      <NeumorphismButton onPress={restartQuiz}>
+        <Text
+          style={{
+            fontFamily: "NovaSquare",
+            color: "#dedede",
+            opacity: 1,
+            shadowOffset: { width: -0.8, height: -0 },
+            shadowColor: "#000",
+            shadowRadius: 0.7,
+            shadowOpacity: 0.7,
+            fontSize: 20,
+            textAlign: "center",
+          }}
+        >
+          Retry Quiz
+        </Text>
+      </NeumorphismButton>
+    );
+  };
+
   const displayProgressBar = () => {
     return (
       <View
@@ -514,38 +549,57 @@ const QuizScreen = (props) => {
                 </Text>
               </View>
             </NeumorphismStyle>
-
+            <Text
+              style={{
+                color: "#fac8cd",
+                opacity: 1,
+                shadowOffset: { width: -0.8, height: -0 },
+                shadowColor: "#000",
+                shadowRadius: 0.7,
+                shadowOpacity: 0.7,
+                fontSize: 24,
+                textAlign: "center",
+                fontFamily: "NovaSquare",
+                marginTop: 40,
+              }}
+            >
+              Your score for this round:
+            </Text>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                marginVertical: 20,
-                padding: 30,
+                marginBottom: 35,
+                padding: 10,
               }}
             >
               <Text
                 style={{
-                  fontSize: 25,
-                  color: "#dedede",
+                  color: "#fac8cd",
                   opacity: 1,
-                  shadowOffset: { width: -0.5, height: -0 },
+                  shadowOffset: { width: -0.8, height: -0 },
                   shadowColor: "#000",
-                  shadowRadius: 0.6,
-                  shadowOpacity: 0.8,
+                  shadowRadius: 0.7,
+                  shadowOpacity: 0.7,
+                  fontSize: 24,
+                  textAlign: "center",
+                  fontFamily: "NovaSquare",
                 }}
               >
                 {currentRoundResults}{" "}
               </Text>
               <Text
                 style={{
-                  fontSize: 25,
-                  color: "#dedede",
+                  color: "#fac8cd",
                   opacity: 1,
-                  shadowOffset: { width: -0.5, height: -0 },
+                  shadowOffset: { width: -0.8, height: -0 },
                   shadowColor: "#000",
-                  shadowRadius: 0.6,
-                  shadowOpacity: 0.8,
+                  shadowRadius: 0.7,
+                  shadowOpacity: 0.7,
+                  fontSize: 24,
+                  textAlign: "center",
+                  fontFamily: "NovaSquare",
                 }}
               >
                 / {currentRound.data.length}
@@ -553,12 +607,30 @@ const QuizScreen = (props) => {
             </View>
 
             {currentRound.level === 3 ? (
-              <Text>
+              <Text
+                style={{
+                  color: "#fac8cd",
+                  opacity: 1,
+                  shadowOffset: { width: -0.8, height: -0 },
+                  shadowColor: "#000",
+                  shadowRadius: 0.7,
+                  shadowOpacity: 0.7,
+                  fontSize: 24,
+                  textAlign: "center",
+                  fontFamily: "NovaSquare",
+                  marginBottom: 40,
+                }}
+              >
                 Total results: {totalResult} \ {api.length}
               </Text>
             ) : null}
 
-            <View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               {currentRound.level !== 3 ? (
                 <NeumorphismButton
                   onPress={() => {
@@ -601,7 +673,7 @@ const QuizScreen = (props) => {
                       shadowColor: "#000",
                       shadowRadius: 0.7,
                       shadowOpacity: 0.7,
-                      fontSize: 22,
+                      fontSize: 24,
                       textAlign: "center",
                       fontFamily: "NovaSquare",
                     }}
@@ -610,23 +682,7 @@ const QuizScreen = (props) => {
                   </Text>
                 </NeumorphismButton>
               ) : null}
-              <NeumorphismButton onPress={restartQuiz}>
-                <Text
-                  style={{
-                    fontFamily: "NovaSquare",
-                    color: "#dedede",
-                    opacity: 1,
-                    shadowOffset: { width: -0.8, height: -0 },
-                    shadowColor: "#000",
-                    shadowRadius: 0.7,
-                    shadowOpacity: 0.7,
-                    fontSize: 20,
-                    textAlign: "center",
-                  }}
-                >
-                  Retry Quiz
-                </Text>
-              </NeumorphismButton>
+              {retryQuizButton()}
               {giveUpButton()}
             </View>
           </View>
