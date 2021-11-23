@@ -1,14 +1,29 @@
-import React from "react";
-import { Image, View, Text } from "react-native";
+import React, { useRef } from "react";
+import { Image, View, Text, Animated } from "react-native";
 
 import NeumorphButtonHome from "../../components/NeumorphButtonHome";
 
 import styles from "./HomeScreen.styles";
 
 const HomeScreen = (props) => {
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <View style={styles.container}>
-      <View>
+      <Animated.View
+        style={{
+          opacity: fadeAnim,
+        }}
+      >
         <Text
           style={{
             fontFamily: "Anurati",
@@ -23,7 +38,7 @@ const HomeScreen = (props) => {
         >
           MUSIC HEAD
         </Text>
-      </View>
+      </Animated.View>
 
       <View style={styles.imageContainer}>
         <Image
@@ -33,24 +48,32 @@ const HomeScreen = (props) => {
         />
       </View>
 
-      <NeumorphButtonHome
-        onPress={() => props.navigation.navigate("QuizScreen")}
+      <Animated.View
+        style={{
+          opacity: fadeAnim,
+        }}
       >
-        <Text
-          style={{
-            color: "#dedede",
-            fontFamily: "Anurati",
-            fontSize: 30,
-            shadowOffset: { width: -1, height: -0 },
-            shadowColor: "#000",
-            shadowOpacity: 0.7,
-            shadowRadius: 0.8,
-            marginBottom: -5,
+        <NeumorphButtonHome
+          onPress={() => {
+            props.navigation.navigate("QuizScreen");
           }}
         >
-          ENTER HERE
-        </Text>
-      </NeumorphButtonHome>
+          <Text
+            style={{
+              color: "#dedede",
+              fontFamily: "Anurati",
+              fontSize: 30,
+              shadowOffset: { width: -1, height: -0 },
+              shadowColor: "#000",
+              shadowOpacity: 0.7,
+              shadowRadius: 0.8,
+              marginBottom: -5,
+            }}
+          >
+            ENTER HERE
+          </Text>
+        </NeumorphButtonHome>
+      </Animated.View>
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { SafeAreaView, View, Text, Image, Modal, Animated } from "react-native";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -100,6 +100,8 @@ const QuizScreen = (props) => {
     }).start();
   };
 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
   const displayQuestionCounter = () => {
     return (
       <View>
@@ -191,11 +193,18 @@ const QuizScreen = (props) => {
 
     if (currentRound.data[currentQuestion]?.video) {
       return (
-        <View style={{}}>
+        <View
+          style={{
+            shadowOffset: { width: 0.4, height: 0 },
+            shadowColor: "#000",
+            shadowOpacity: 0.7,
+            shadowRadius: 0.7,
+          }}
+        >
           <Video
             ref={video}
             style={{
-              backgroundColor: "#e1e4e8",
+              // backgroundColor: "#e1e4e8",
               width: 325,
               height: 200,
               marginBottom: 0,
@@ -220,10 +229,6 @@ const QuizScreen = (props) => {
                 padding: 12,
                 color: "#D0D3D4",
                 opacity: 1,
-                shadowOffset: { width: -0.5, height: -0 },
-                shadowColor: "#000",
-                shadowRadius: 0.7,
-                shadowOpacity: 0.7,
               }}
             >
               {status.isPlaying ? (
@@ -315,7 +320,14 @@ const QuizScreen = (props) => {
       >
         {currentRound.data[currentQuestion]?.options.map((option) => (
           <NeumorphismButton
-            onPress={() => checkAnswer(option)}
+            onPress={() => {
+              checkAnswer(option);
+              Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true,
+              }).start();
+            }}
             disabled={ifOptionDisabled}
             key={option}
             style={[
@@ -393,18 +405,39 @@ const QuizScreen = (props) => {
   };
 
   const nextButton = () => {
+    const fadeOut = () => {
+      // Will change fadeAnim value to 0 in 3 seconds
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start(() => {
+        console.log("animation ended");
+        nextQuestion();
+      });
+    };
+
     if (displayNextButton) {
       return (
-        <NeumorphismButton
-          onPress={nextQuestion}
+        <Animated.View
           style={{
-            width: 150,
-            alignItems: "center",
-            justifyContent: "center",
+            opacity: fadeAnim,
           }}
         >
-          <Text style={styles.nextButtonText}>Next</Text>
-        </NeumorphismButton>
+          <NeumorphismButton
+            onPress={() => {
+              // nextQuestion();
+              fadeOut();
+            }}
+            style={{
+              width: 150,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={styles.nextButtonText}>Next</Text>
+          </NeumorphismButton>
+        </Animated.View>
       );
     } else {
       return null;

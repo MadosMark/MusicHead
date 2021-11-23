@@ -1,7 +1,7 @@
 export default [
   {
     // LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1
-    video: require("../assets/videos/kendrickGQ.mp4"),
+    video: require("../assets/videos/youngThugVideo.mp4"),
     question: "Which artist is Kendrick Lamar talking about?",
     options: ["2Pac", "Eminem", "Andre 3000"],
     correct_option: "Eminem",
