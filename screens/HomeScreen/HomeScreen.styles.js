@@ -35,11 +35,15 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     margin: 35,
-    opacity: 0.8,
+    opacity: 0.6,
   },
   imageContainer: {
     justifyContent: "center",
     alignItems: "center",
+    shadowOffset: { width: 0.8, height: 0 },
+    shadowColor: "#000",
+    shadowOpacity: 0.9,
+    shadowRadius: 0.7,
   },
 });
 

@@ -204,10 +204,9 @@ const QuizScreen = (props) => {
           <Video
             ref={video}
             style={{
-              // backgroundColor: "#e1e4e8",
+              backgroundColor: "#e1e4e8",
               width: 325,
               height: 200,
-              marginBottom: 0,
               borderRadius: 20,
             }}
             source={currentRound.data[currentQuestion]?.video}
@@ -226,7 +225,7 @@ const QuizScreen = (props) => {
                   : video.current.playAsync();
               }}
               style={{
-                padding: 12,
+                marginVertical: 15,
                 color: "#D0D3D4",
                 opacity: 1,
               }}
@@ -263,7 +262,6 @@ const QuizScreen = (props) => {
 
   const getRandomImage = () => {
     const vinylImages = [
-      require("../../assets/vinyls/vinyl.png"),
       require("../../assets/vinyls/vinyl2.png"),
       require("../../assets/vinyls/vinyl3.png"),
       require("../../assets/vinyls/vinyl4.png"),
@@ -292,7 +290,7 @@ const QuizScreen = (props) => {
             height: 100,
             justifyContent: "center",
             alignItems: "center",
-            marginVertical: 80,
+            marginVertical: 85,
             shadowOffset: { width: 12, height: 12 },
             shadowColor: "#bababa",
             shadowOpacity: 1.0,

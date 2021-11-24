@@ -108,12 +108,12 @@ const Vinyl = (props) => {
                 if (isPlaying) {
                   pauseSound();
 
-                  rotateValueHolder.stopAnimation((value) => {
-                    rotateValueHolder.setValue(value);
-                    console.log(value);
-                  });
-                  // rotateValueHolder.stopAnimation();
-                  // rotateValueHolder.extractOffset();
+                  // rotateValueHolder.stopAnimation((value) => {
+                  //   rotateValueHolder.setValue(value);
+                  //   console.log(value);
+                  // });
+                  rotateValueHolder.stopAnimation();
+                  rotateValueHolder.extractOffset();
                 } else {
                   console.log(rotateValueHolder);
                   resumeSound();
@@ -122,7 +122,7 @@ const Vinyl = (props) => {
             }
           }}
           style={{
-            padding: 12,
+            padding: 5,
             color: "#D0D3D4",
             opacity: 1,
             shadowOffset: { width: -0.5, height: -0 },

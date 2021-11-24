@@ -46,7 +46,6 @@ export default function App() {
       require("./assets/videos/lilDicky.mp4"),
       require("./assets/videos/logic44.mp4"),
       require("./assets/videos/youngThugVideo.mp4"),
-      require("./assets/vinyls/vinyl.png"),
       require("./assets/vinyls/vinyl2.png"),
       require("./assets/vinyls/vinyl3.png"),
       require("./assets/vinyls/vinyl4.png"),
