@@ -1,11 +1,15 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   quizContainer: {
     backgroundColor: "#dedede",
     height: "100%",
-    // justifyContent: 'center',
-    // alignItems: 'center',
+  },
+  quizHolder: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingTop: 15,
+    backgroundColor: "#dedede",
   },
 
   question: {
@@ -14,7 +18,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   questionText: {
-    fontSize: 23,
+    fontSize: 25,
     textAlign: "center",
     fontFamily: "NovaSquare",
     color: "#D0D3D4",
@@ -23,61 +27,6 @@ export default StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.8,
     shadowRadius: 0.7,
-  },
-  options: {
-    alignItems: "baseline",
-    justifyContent: "center",
-    marginVertical: 16,
-    flex: 1,
-    marginTop: 150,
-  },
-  option: {
-    fontSize: 16,
-    color: "#fff",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowColor: "black",
-    shadowRadius: 1,
-  },
-  buttonsContainer: {
-    marginBottom: 12,
-    paddingVertical: 16,
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-  optionButton: {
-    paddingVertical: 12,
-    marginVertical: 8,
-    // backgroundColor: '#eee',
-    borderRadius: 10,
-    padding: 10,
-    width: "100%",
-  },
-  buttons: {
-    // backgroundColor: '#FFF',
-    padding: 10,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowColor: "black",
-    shadowRadius: 1,
-    borderRadius: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 0,
-  },
-
-  giveUpButton: {
-    backgroundColor: "#FFF",
-    padding: 10,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowColor: "black",
-    shadowRadius: 1,
-    borderRadius: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 100,
-    width: "50%",
   },
 
   giveUpText: {
@@ -89,6 +38,12 @@ export default StyleSheet.create({
     shadowOpacity: 0.7,
     fontSize: 18,
     fontFamily: "NovaSquare",
+  },
+
+  nextButtonContainer: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flex: 1,
   },
 
   nextButton: {
@@ -112,5 +67,86 @@ export default StyleSheet.create({
     shadowRadius: 1,
     shadowOpacity: 0.7,
     fontSize: 22,
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#dedede",
+  },
+  modalHolder: {
+    backgroundColor: "#dedede",
+    width: "90%",
+    borderRadius: 20,
+    padding: 20,
+    alignItems: "center",
+  },
+  modalTitleText: {
+    textAlign: "center",
+    fontSize: 35,
+    color: "#dedede",
+    opacity: 1,
+    shadowOffset: { width: -1, height: -0 },
+    shadowColor: "#000",
+    shadowRadius: 0.8,
+    shadowOpacity: 0.8,
+    paddingVertical: 45,
+    fontFamily: "NovaSquare",
+  },
+  modalScoreKeeper: {
+    color: "#fac8cd",
+    opacity: 1,
+    shadowOffset: { width: -0.8, height: -0 },
+    shadowColor: "#000",
+    shadowRadius: 0.7,
+    shadowOpacity: 0.7,
+    fontSize: 24,
+    textAlign: "center",
+    fontFamily: "NovaSquare",
+    marginTop: 35,
+  },
+
+  scoreKeeperContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginBottom: 35,
+    padding: 10,
+  },
+  scoreKeeperCounter: {
+    color: "#fac8cd",
+    opacity: 1,
+    shadowOffset: { width: -0.8, height: -0 },
+    shadowColor: "#000",
+    shadowRadius: 0.7,
+    shadowOpacity: 0.7,
+    fontSize: 24,
+    textAlign: "center",
+    fontFamily: "NovaSquare",
+  },
+  scoreKeeperNumber: {
+    color: "#fac8cd",
+    opacity: 1,
+    shadowOffset: { width: -0.8, height: -0 },
+    shadowColor: "#000",
+    shadowRadius: 0.7,
+    shadowOpacity: 0.7,
+    fontSize: 24,
+    textAlign: "center",
+    fontFamily: "NovaSquare",
+  },
+
+  totalScoreKeeper: {
+    color: "#fac8cd",
+    opacity: 1,
+    shadowOffset: { width: -0.8, height: -0 },
+    shadowColor: "#000",
+    shadowRadius: 0.7,
+    shadowOpacity: 0.7,
+    fontSize: 24,
+    textAlign: "center",
+    fontFamily: "NovaSquare",
+    marginBottom: 45,
   },
 });

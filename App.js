@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import MyStack from "./components/navigator";
+import MyStack from "./components/Navigator";
 import { NovaSquare_400Regular } from "@expo-google-fonts/nova-square";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";

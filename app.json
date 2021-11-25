@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Music_Head",
+    "name": "Music Head",
     "slug": "Music_Head",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": ""
-    }
+    },
+    "description": "Music Quiz Application",
+    "githubUrl": "https://github.com/MadosMark/MusicHead"
   }
 }

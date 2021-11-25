@@ -3,18 +3,15 @@ import {
   Animated,
   StyleSheet,
   View,
-  Text,
   Easing,
   TouchableOpacity,
 } from "react-native";
-import NeumorphismButton from "./NeumorphismButton";
 import { Audio } from "expo-av";
 import { Ionicons } from "@expo/vector-icons";
 
 const Vinyl = (props) => {
   const { song, vinylImage, musicHasStopped } = props;
 
-  // let rotateValueHolder = new Animated.Value(0);
   const rotateValueHolder = useRef(new Animated.Value(0)).current;
 
   const [sound, setSound] = useState(null);
@@ -25,29 +22,23 @@ const Vinyl = (props) => {
   });
 
   async function playSound() {
-    console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(song);
     setSound(sound);
-    console.log("Playing Sound");
     setIsPlaying(true);
     await sound.playAsync();
   }
 
   async function pauseSound() {
-    console.log("pausing sound");
     setIsPlaying(false);
     await sound.pauseAsync();
   }
 
   async function resumeSound() {
-    console.log("resume sound");
     setIsPlaying(true);
     await sound.playAsync();
   }
 
   const onStartVinylAnimation = () => {
-    // rotateValueHolder.setValue(0);
-
     Animated.timing(rotateValueHolder, {
       toValue: 1,
       duration: 11500,
@@ -64,7 +55,6 @@ const Vinyl = (props) => {
 
   React.useEffect(() => {
     if (musicHasStopped) {
-      console.log("music has stopped", musicHasStopped);
       setSound(null);
       Animated.timing(rotateValueHolder).stop();
     }
@@ -104,31 +94,24 @@ const Vinyl = (props) => {
               if (sound === null) {
                 playSound();
               } else {
-                console.log("there is sound");
                 if (isPlaying) {
                   pauseSound();
-
-                  // rotateValueHolder.stopAnimation((value) => {
-                  //   rotateValueHolder.setValue(value);
-                  //   console.log(value);
-                  // });
                   rotateValueHolder.stopAnimation();
                   rotateValueHolder.extractOffset();
                 } else {
-                  console.log(rotateValueHolder);
                   resumeSound();
                 }
               }
             }
           }}
           style={{
-            padding: 5,
+            paddingHorizontal: 20,
             color: "#D0D3D4",
             opacity: 1,
-            shadowOffset: { width: -0.5, height: -0 },
+            shadowOffset: { width: -0.3, height: 0.3 },
             shadowColor: "#000",
-            shadowRadius: 0.7,
-            shadowOpacity: 0.7,
+            shadowRadius: 0.8,
+            shadowOpacity: 0.9,
           }}
         >
           {isPlaying ? (

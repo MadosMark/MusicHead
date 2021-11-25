@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { SafeAreaView, View, Text, Image, Modal, Animated } from "react-native";
-
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Video } from "expo-av";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Ionicons } from "@expo/vector-icons";
 
 import NeumorphismButton from "../../components/NeumorphismButton";
 import NeumorphismStyle from "../../components/NeumorphismStyle";
 import Vinyl from "../../components/Vinyl";
 import api from "../../api/api";
-import { Ionicons } from "@expo/vector-icons";
 
 import styles from "./QuizScreen.styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const QuizScreen = (props) => {
   const rounds = {
@@ -56,6 +55,7 @@ const QuizScreen = (props) => {
 
     setIsAnswered(true);
     setMusicHasStopped(true);
+    setVideoHasStopped(true);
   };
 
   const nextQuestion = () => {
@@ -70,6 +70,7 @@ const QuizScreen = (props) => {
       setDisplayNextButton(false);
       setIsAnswered(false);
       setMusicHasStopped(false);
+      setVideoHasStopped(false);
     }
     Animated.timing(progress, {
       toValue: currentQuestion + 1,
@@ -187,6 +188,7 @@ const QuizScreen = (props) => {
     }
   };
 
+  const [videoHasStopped, setVideoHasStopped] = useState(false);
   const DisplayVideo = () => {
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
@@ -208,6 +210,7 @@ const QuizScreen = (props) => {
               width: 325,
               height: 200,
               borderRadius: 20,
+              marginTop: 5,
             }}
             source={currentRound.data[currentQuestion]?.video}
             resizeMode="cover"
@@ -219,15 +222,21 @@ const QuizScreen = (props) => {
             }}
           >
             <TouchableOpacity
+              disabled={videoHasStopped}
               onPress={() => {
                 status.isPlaying
                   ? video.current.pauseAsync()
                   : video.current.playAsync();
               }}
               style={{
-                marginVertical: 15,
+                marginTop: 10,
+                marginBottom: 5,
                 color: "#D0D3D4",
                 opacity: 1,
+                shadowOffset: { width: -0.3, height: 0.5 },
+                shadowColor: "#000",
+                shadowRadius: 0.6,
+                shadowOpacity: 0.4,
               }}
             >
               {status.isPlaying ? (
@@ -270,7 +279,6 @@ const QuizScreen = (props) => {
     let randomNumber = Math.floor(Math.random() * vinylImages.length);
 
     if (currentRound.data[currentQuestion]?.song) {
-      console.log("RANDOMIZE_THIS_BITCH");
       setCurrentImage(vinylImages[randomNumber]);
     }
   };
@@ -313,7 +321,7 @@ const QuizScreen = (props) => {
     return (
       <View
         style={{
-          paddingVertical: 0,
+          marginTop: -5,
         }}
       >
         {currentRound.data[currentQuestion]?.options.map((option) => (
@@ -358,7 +366,7 @@ const QuizScreen = (props) => {
                 shadowColor: "#000",
                 shadowOpacity: 0.8,
                 shadowRadius: 0.5,
-                fontSize: 17,
+                fontSize: 19,
               }}
             >
               {option}
@@ -366,10 +374,6 @@ const QuizScreen = (props) => {
             {isAnswered && option === optionSelected ? (
               <View
                 style={{
-                  // width: 30, height: 30,
-                  // alignItems: 'center',
-                  // justifyContent: 'flex-end',
-                  // flexDirection: 'row',
                   position: "absolute",
                   right: 16,
                   top: 0,
@@ -382,7 +386,7 @@ const QuizScreen = (props) => {
                     name="check"
                     style={{
                       color: "#8bc901",
-                      fontSize: 20,
+                      fontSize: 19,
                     }}
                   />
                 ) : (
@@ -390,7 +394,7 @@ const QuizScreen = (props) => {
                     name="close"
                     style={{
                       color: "red",
-                      fontSize: 20,
+                      fontSize: 19,
                     }}
                   />
                 )}
@@ -404,13 +408,11 @@ const QuizScreen = (props) => {
 
   const nextButton = () => {
     const fadeOut = () => {
-      // Will change fadeAnim value to 0 in 3 seconds
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 200,
         useNativeDriver: true,
       }).start(() => {
-        console.log("animation ended");
         nextQuestion();
       });
     };
@@ -424,7 +426,6 @@ const QuizScreen = (props) => {
         >
           <NeumorphismButton
             onPress={() => {
-              // nextQuestion();
               fadeOut();
             }}
             style={{
@@ -508,20 +509,9 @@ const QuizScreen = (props) => {
     );
   };
 
-  const renderResults = () => {
-    return totalResult;
-  };
-
   return (
     <SafeAreaView style={styles.quizContainer}>
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "flex-end",
-          paddingTop: 15,
-          backgroundColor: "#dedede",
-        }}
-      >
+      <View style={styles.quizHolder}>
         {displayProgressBar()}
         {displayQuestionCounter()}
         {displayQuestion()}
@@ -530,128 +520,34 @@ const QuizScreen = (props) => {
         {DisplayVideo()}
         {displayOption()}
       </View>
-      <View
-        style={{
-          justifyContent: "flex-end",
-          alignItems: "center",
-          flex: 1,
-        }}
-      >
-        {nextButton()}
-      </View>
+      <View style={styles.nextButtonContainer}>{nextButton()}</View>
 
       <Modal animationType="fade" transparent={true} visible={displayShowModal}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#dedede",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "#dedede",
-              width: "90%",
-              borderRadius: 20,
-              padding: 20,
-              alignItems: "center",
-            }}
-          >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHolder}>
             <NeumorphismStyle>
               <View>
-                <Text
-                  style={{
-                    textAlign: "center",
-                    fontSize: 30,
-                    color: "#dedede",
-                    opacity: 1,
-                    shadowOffset: { width: -1, height: -0 },
-                    shadowColor: "#000",
-                    shadowRadius: 0.8,
-                    shadowOpacity: 0.8,
-                    paddingVertical: 45,
-                    fontFamily: "NovaSquare",
-                  }}
-                >
+                <Text style={styles.modalTitleText}>
                   {currentRoundResults > currentRound.data.length / 2
                     ? "YOU ARE DEFINITELY A MUSIC HEAD!"
                     : "YOU SHOULD STUDY MORE MY DUDE!"}
                 </Text>
               </View>
             </NeumorphismStyle>
-            <Text
-              style={{
-                color: "#fac8cd",
-                opacity: 1,
-                shadowOffset: { width: -0.8, height: -0 },
-                shadowColor: "#000",
-                shadowRadius: 0.7,
-                shadowOpacity: 0.7,
-                fontSize: 24,
-                textAlign: "center",
-                fontFamily: "NovaSquare",
-                marginTop: 40,
-              }}
-            >
+            <Text style={styles.modalScoreKeeper}>
               Your score for this round:
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                marginBottom: 35,
-                padding: 10,
-              }}
-            >
-              <Text
-                style={{
-                  color: "#fac8cd",
-                  opacity: 1,
-                  shadowOffset: { width: -0.8, height: -0 },
-                  shadowColor: "#000",
-                  shadowRadius: 0.7,
-                  shadowOpacity: 0.7,
-                  fontSize: 24,
-                  textAlign: "center",
-                  fontFamily: "NovaSquare",
-                }}
-              >
+            <View style={styles.scoreKeeperContainer}>
+              <Text style={styles.scoreKeeperCounter}>
                 {currentRoundResults}{" "}
               </Text>
-              <Text
-                style={{
-                  color: "#fac8cd",
-                  opacity: 1,
-                  shadowOffset: { width: -0.8, height: -0 },
-                  shadowColor: "#000",
-                  shadowRadius: 0.7,
-                  shadowOpacity: 0.7,
-                  fontSize: 24,
-                  textAlign: "center",
-                  fontFamily: "NovaSquare",
-                }}
-              >
+              <Text style={styles.scoreKeeperNumber}>
                 / {currentRound.data.length}
               </Text>
             </View>
 
             {currentRound.level === 3 ? (
-              <Text
-                style={{
-                  color: "#fac8cd",
-                  opacity: 1,
-                  shadowOffset: { width: -0.8, height: -0 },
-                  shadowColor: "#000",
-                  shadowRadius: 0.7,
-                  shadowOpacity: 0.7,
-                  fontSize: 24,
-                  textAlign: "center",
-                  fontFamily: "NovaSquare",
-                  marginBottom: 40,
-                }}
-              >
+              <Text style={styles.totalScoreKeeper}>
                 Total results: {totalResult} \ {api.length}
               </Text>
             ) : null}
@@ -688,6 +584,7 @@ const QuizScreen = (props) => {
                     setifOptionDisabled(false);
                     setDisplayNextButton(false);
                     setIsAnswered(false);
+                    setVideoHasStopped(false);
 
                     Animated.timing(progress, {
                       toValue: 0,

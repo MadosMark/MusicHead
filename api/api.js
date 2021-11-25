@@ -42,7 +42,7 @@ export default [
   },
   {
     song: require("../assets/music/fade.mp3"),
-    question: "Who is this artist the features on Kanye West - Fade?",
+    question: "Who is this artist that features on Kanye West - Fade?",
     options: ["Blackbear", "Clever", "Post Malone"],
     correct_option: "Post Malone",
   },
@@ -167,7 +167,7 @@ export default [
     options: [
       "Mac Miller - Faces",
       "Vince Staples - Prima Donna",
-      "The Game - The Documentary",
+      "The Game - 1992",
     ],
     correct_option: "Mac Miller - Faces",
   },
